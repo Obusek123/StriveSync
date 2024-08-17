@@ -1,0 +1,128 @@
+[
+    {
+        "key": "veryLow",
+        "range": "Calorie intake < 1200",
+        "recommendations": {
+            "diet": [
+                "Consult a healthcare provider before starting any diet.",
+                "Focus on nutrient-dense, low-calorie foods like leafy greens.",
+                "Increase intake of high-protein, low-fat foods."
+            ],
+            "exercise": [
+                "Limit physical activity to light exercises like stretching or walking.",
+                "Avoid intense workouts to prevent muscle loss.",
+                "Incorporate relaxation techniques like meditation."
+            ],
+            "nutrition": [
+                "Ensure adequate vitamin and mineral intake through supplements if necessary.",
+                "Prioritize hydration with water-rich foods and fluids.",
+                "Monitor overall nutrient intake to avoid deficiencies."
+            ]
+        }
+    },
+    {
+        "key": "low",
+        "range": "1200 ≤ Calorie intake < 1500",
+        "recommendations": {
+            "diet": [
+                "Increase calorie intake with nutrient-dense foods.",
+                "Incorporate more complex carbohydrates like whole grains.",
+                "Include healthy fats such as avocados, nuts, and seeds."
+            ],
+            "exercise": [
+                "Focus on low-intensity exercises like walking or yoga.",
+                "Avoid high-intensity workouts to conserve energy.",
+                "Gradually increase exercise duration as energy levels improve."
+            ],
+            "nutrition": [
+                "Ensure adequate intake of vitamins and minerals.",
+                "Consider adding supplements if necessary.",
+                "Focus on nutrient-dense foods to meet calorie needs."
+            ]
+        }
+    },
+    {
+        "key": "moderateLow",
+        "range": "1500 ≤ Calorie intake < 2000",
+        "recommendations": {
+            "diet": [
+                "Maintain a balanced diet with a variety of nutrients.",
+                "Include fruits, vegetables, whole grains, and lean proteins.",
+                "Monitor portion sizes to avoid overeating."
+            ],
+            "exercise": [
+                "Incorporate a mix of cardio and light strength training.",
+                "Aim for at least 150 minutes of moderate aerobic activity per week.",
+                "Include flexibility and balance exercises."
+            ],
+            "nutrition": [
+                "Ensure adequate protein intake to support muscle maintenance.",
+                "Stay hydrated with plenty of water.",
+                "Include healthy fats for overall health."
+            ]
+        }
+    },
+    {
+        "key": "moderate",
+        "range": "2000 ≤ Calorie intake < 2500",
+        "recommendations": {
+            "diet": [
+                "Maintain a well-rounded diet with a focus on whole foods.",
+                "Include a variety of colorful vegetables and lean proteins.",
+                "Keep an eye on portion sizes and total calorie intake."
+            ],
+            "exercise": [
+                "Include regular strength training and aerobic exercise.",
+                "Aim for at least 300 minutes of moderate exercise per week.",
+                "Incorporate stretching and mobility exercises."
+            ],
+            "nutrition": [
+                "Monitor macronutrient ratios to align with fitness goals.",
+                "Prioritize high-quality protein sources.",
+                "Stay well-hydrated, especially during exercise."
+            ]
+        }
+    },
+    {
+        "key": "moderateHigh",
+        "range": "2500 ≤ Calorie intake < 3000",
+        "recommendations": {
+            "diet": [
+                "Focus on nutrient-dense, high-calorie foods.",
+                "Include protein-rich foods to support muscle growth.",
+                "Consider frequent meals to meet calorie needs."
+            ],
+            "exercise": [
+                "Increase physical activity, especially strength training.",
+                "Incorporate high-intensity interval training (HIIT).",
+                "Ensure proper rest between intense workouts."
+            ],
+            "nutrition": [
+                "Monitor macronutrient ratios for optimal health.",
+                "Consider supplements if necessary to meet nutrient needs.",
+                "Stay hydrated and ensure adequate electrolyte intake."
+            ]
+        }
+    },
+    {
+        "key": "high",
+        "range": "Calorie intake ≥ 3000",
+        "recommendations": {
+            "diet": [
+                "Focus on high-calorie, nutrient-rich foods.",
+                "Increase intake of healthy fats like nuts, seeds, and oils.",
+                "Balance calorie intake with physical activity to avoid excess weight gain."
+            ],
+            "exercise": [
+                "Increase intensity and duration of strength and endurance training.",
+                "Incorporate a variety of workouts to prevent plateaus.",
+                "Ensure adequate recovery time between workouts."
+            ],
+            "nutrition": [
+                "Pay attention to micronutrient intake to support overall health.",
+                "Consider using supplements to meet high nutritional demands.",
+                "Stay vigilant about hydration, especially during intense exercise."
+            ]
+        }
+    }
+]

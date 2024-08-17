@@ -1,0 +1,65 @@
+[
+    {
+        "key": "low",
+        "range": "Calorie intake < 1500",
+        "recommendations": {
+            "diet": [
+                "Increase calorie intake with nutrient-dense foods.",
+                "Include more complex carbohydrates like whole grains.",
+                "Incorporate healthy fats such as avocados, nuts, and seeds."
+            ],
+            "exercise": [
+                "Focus on low-intensity exercises like walking or yoga.",
+                "Avoid high-intensity workouts to conserve energy.",
+                "Gradually increase exercise duration as energy levels improve."
+            ],
+            "nutrition": [
+                "Ensure adequate intake of vitamins and minerals.",
+                "Consider adding supplements if necessary.",
+                "Focus on nutrient-dense foods to meet calorie needs."
+            ]
+        }
+    },
+    {
+        "key": "moderate",
+        "range": "1500 ≤ Calorie intake < 2500",
+        "recommendations": {
+            "diet": [
+                "Maintain a balanced diet with a variety of nutrients.",
+                "Include fruits, vegetables, whole grains, and lean proteins.",
+                "Monitor portion sizes to avoid overeating."
+            ],
+            "exercise": [
+                "Incorporate a mix of cardio and strength training.",
+                "Aim for at least 150 minutes of moderate aerobic activity per week.",
+                "Include flexibility and balance exercises."
+            ],
+            "nutrition": [
+                "Ensure adequate protein intake to support muscle maintenance.",
+                "Stay hydrated with plenty of water.",
+                "Include healthy fats for overall health."
+            ]
+        }
+    },
+    {
+        "key": "high",
+        "range": "Calorie intake ≥ 2500",
+        "recommendations": {
+            "diet": [
+                "Focus on nutrient-dense, high-calorie foods.",
+                "Include protein-rich foods to support muscle growth.",
+                "Consider frequent meals to meet calorie needs."
+            ],
+            "exercise": [
+                "Increase physical activity, especially strength training.",
+                "Incorporate high-intensity interval training (HIIT).",
+                "Ensure proper rest between intense workouts."
+            ],
+            "nutrition": [
+                "Monitor macronutrient ratios for optimal health.",
+                "Consider supplements if necessary to meet nutrient needs.",
+                "Stay hydrated and ensure adequate electrolyte intake."
+            ]
+        }
+    }
+]

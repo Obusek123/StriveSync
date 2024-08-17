@@ -1,0 +1,78 @@
+[
+    {
+        "key": "lowProtein",
+        "range": "Protein intake < 50 grams",
+        "recommendations": {
+            "diet": [
+                "Increase intake of protein-rich foods such as lean meats, fish, eggs, and dairy products.",
+                "Consider adding protein supplements like whey protein or plant-based protein powders to your diet.",
+                "Include beans, lentils, and nuts as good sources of protein for variety."
+            ],
+            "exercise": [
+                "Incorporate strength training exercises to build muscle mass and improve overall protein utilization.",
+                "Consider adding resistance training exercises like weightlifting or bodyweight exercises."
+            ],
+            "nutrition": [
+                "Ensure a balanced intake of essential amino acids by consuming a variety of protein sources.",
+                "Monitor protein intake regularly to ensure you are meeting your dietary needs."
+            ]
+        }
+    },
+    {
+        "key": "lowFat",
+        "range": "Fat intake < 30 grams",
+        "recommendations": {
+            "diet": [
+                "Include sources of healthy fats like avocados, nuts, seeds, and olive oil in your meals.",
+                "Avoid low-fat diets that may lack essential fatty acids and lead to hormonal imbalances.",
+                "Incorporate fatty fish like salmon or mackerel for omega-3 fatty acids."
+            ],
+            "exercise": [
+                "Ensure that your exercise routine includes activities that support overall health and wellness.",
+                "Combine aerobic exercises with resistance training to support healthy fat metabolism."
+            ],
+            "nutrition": [
+                "Consider consulting a nutritionist to balance your fat intake with other macronutrients.",
+                "Keep track of your fat intake to ensure you are consuming enough healthy fats for optimal health."
+            ]
+        }
+    },
+    {
+        "key": "lowCarbs",
+        "range": "Carbohydrate intake < 100 grams",
+        "recommendations": {
+            "diet": [
+                "Increase intake of whole grains, fruits, and vegetables to meet your carbohydrate needs.",
+                "Include complex carbohydrates like quinoa, brown rice, and oats in your diet.",
+                "Avoid excessive consumption of simple sugars and processed foods."
+            ],
+            "exercise": [
+                "Combine your exercise routine with adequate carbohydrate intake to maintain energy levels.",
+                "Include cardio workouts like running or cycling to utilize carbohydrates effectively."
+            ],
+            "nutrition": [
+                "Monitor your carbohydrate intake to ensure it aligns with your energy requirements and fitness goals.",
+                "Consider working with a dietitian to create a balanced meal plan that includes sufficient carbohydrates."
+            ]
+        }
+    },
+    {
+        "key": "balanced",
+        "range": "Balanced intake",
+        "recommendations": {
+            "diet": [
+                "Maintain a balanced diet with adequate proportions of proteins, fats, and carbohydrates.",
+                "Include a variety of foods to ensure you get all essential nutrients.",
+                "Monitor portion sizes to avoid overeating or under-eating any macronutrient."
+            ],
+            "exercise": [
+                "Incorporate a mix of aerobic, strength, and flexibility exercises to support overall health.",
+                "Adjust your exercise routine based on your macro nutrient intake and fitness goals."
+            ],
+            "nutrition": [
+                "Stay hydrated and ensure you're consuming a variety of foods for overall health.",
+                "Regularly review and adjust your diet and exercise plans based on progress and changing needs."
+            ]
+        }
+    }
+]

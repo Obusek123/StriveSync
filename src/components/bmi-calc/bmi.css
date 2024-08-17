@@ -1,0 +1,110 @@
+.bmi .bmi-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bmi .bmi-head h1 {
+    font-size: 48px;
+}
+
+.bmi .bmi-head span {
+    margin-top: 26px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    opacity: 60%;
+}
+
+.bmi .bmi-head::before {
+    content: '';
+    display: block;
+    width: 365px;
+    height: 10px;
+    background-color: #bef3fa;
+    top: 0;
+    border-radius: 10px;
+    margin-bottom: 26px;
+}
+
+.bmi .bmi-output {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bmi .bmi-calc {
+    display: flex;
+    flex-direction: column;
+}
+
+.bmi .bmi-output {
+    margin-top: 63px;
+}
+
+.bmi .bmi-output .bmi-calc {
+    padding: 50px 30px;
+    border-radius: 15px;
+    background-color: #bef3fa;
+}
+
+.bmi .bmi-output .age-gender {
+    display: flex;
+    gap: 60px;
+}
+
+.bmi .bmi-output .height {
+    display: flex;
+    flex-direction: column;
+}
+
+.bmi .bmi-output .age,
+.bmi .bmi-output .gender {
+    display: flex;
+    flex-direction: column;
+}
+
+.bmi .text-feet {
+    display: flex;
+    gap: 60px;
+}
+
+.bmi .bmi-output input,
+.bmi .bmi-output select {
+    width: 220px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    font-size: 16px;
+    box-shadow: 0 10px 20px 0px rgba(177, 169, 169, 0.5);
+    margin-top: 10px;
+}
+
+.bmi .bmi-output .weight {
+    display: flex;
+    flex-direction: column;
+}
+
+.bmi .bmi-output .bmi-input {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    flex: 1;
+}
+
+.bmi .wt-btn {
+    display: flex;
+    gap: 60px;
+}
+
+.bmi .wt-btn button {
+    margin-top: 35px;
+    height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #5b5bdd;
+    font-size: 16px;
+}

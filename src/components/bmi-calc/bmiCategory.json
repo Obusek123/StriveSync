@@ -1,0 +1,112 @@
+{
+    "bmiCategories": {
+        "Underweight": {
+            "range": "BMI < 18.5",
+            "recommendations": {
+                "diet": [
+                    "Increase calorie intake with nutrient-dense foods",
+                    "Eat more frequently, including snacks between meals",
+                    "Incorporate healthy fats like avocados, nuts, and olive oil",
+                    "Include protein-rich foods like lean meats, beans, and dairy"
+                ],
+                "exercise": [
+                    "Focus on strength training to build muscle mass",
+                    "Avoid excessive cardio exercises",
+                    "Include exercises like squats, deadlifts, and bench presses",
+                    "Ensure proper rest between workouts"
+                ],
+                "nutrition": [
+                    "Increase protein intake to support muscle growth",
+                    "Consume carbohydrates to fuel workouts",
+                    "Ensure adequate vitamin and mineral intake"
+                ],
+                "psychological": [
+                    "Consider intermittent fasting to manage appetite",
+                    "Consult a dietitian for personalized meal planning",
+                    "Practice mindfulness to avoid stress-induced eating patterns"
+                ]
+            }
+        },
+        "Normal Weight": {
+            "range": "18.5 ≤ BMI < 24.9",
+            "recommendations": {
+                "diet": [
+                    "Maintain a balanced diet with a variety of nutrients",
+                    "Include fruits, vegetables, whole grains, and lean proteins",
+                    "Monitor portion sizes to avoid overeating",
+                    "Limit processed and sugary foods"
+                ],
+                "exercise": [
+                    "Incorporate a mix of cardio and strength training",
+                    "Aim for at least 150 minutes of moderate aerobic activity per week",
+                    "Include flexibility and balance exercises like yoga",
+                    "Focus on maintaining overall fitness"
+                ],
+                "nutrition": [
+                    "Ensure adequate intake of all essential nutrients",
+                    "Stay hydrated with plenty of water",
+                    "Include healthy fats for overall health"
+                ],
+                "psychological": [
+                    "Practice mindful eating to maintain a healthy weight",
+                    "Explore relaxation techniques like meditation",
+                    "Set realistic fitness goals and track progress"
+                ]
+            }
+        },
+        "Overweight": {
+            "range": "25 ≤ BMI < 29.9",
+            "recommendations": {
+                "diet": [
+                    "Reduce calorie intake to promote weight loss",
+                    "Focus on high-fiber foods to feel fuller for longer",
+                    "Limit intake of sugary and high-fat foods",
+                    "Include plenty of vegetables, lean proteins, and whole grains"
+                ],
+                "exercise": [
+                    "Increase physical activity, especially cardio exercises",
+                    "Aim for 30 minutes of exercise most days of the week",
+                    "Incorporate strength training to boost metabolism",
+                    "Include interval training for effective fat burning"
+                ],
+                "nutrition": [
+                    "Monitor macronutrient ratios for optimal weight loss",
+                    "Increase intake of low-calorie, nutrient-dense foods",
+                    "Consider supplements if necessary"
+                ],
+                "psychological": [
+                    "Explore fasting methods to support weight loss",
+                    "Seek support from a health coach or counselor",
+                    "Focus on building a healthy relationship with food"
+                ]
+            }
+        },
+        "Obesity": {
+            "range": "BMI ≥ 30",
+            "recommendations": {
+                "diet": [
+                    "Adopt a low-calorie diet with a focus on nutrient-rich foods",
+                    "Avoid sugary drinks and high-calorie snacks",
+                    "Plan meals ahead to avoid unhealthy choices",
+                    "Consider working with a nutritionist for a personalized plan"
+                ],
+                "exercise": [
+                    "Start with low-impact exercises like walking or swimming",
+                    "Gradually increase the intensity and duration of workouts",
+                    "Incorporate strength training to prevent muscle loss",
+                    "Ensure consistency and track progress"
+                ],
+                "nutrition": [
+                    "Focus on foods that provide high satiety with fewer calories",
+                    "Ensure adequate protein intake to preserve muscle mass",
+                    "Consider a multivitamin to cover nutritional gaps"
+                ],
+                "psychological": [
+                    "Consult with a healthcare provider about fasting options",
+                    "Address emotional eating with therapy or counseling",
+                    "Set achievable goals to stay motivated"
+                ]
+            }
+        }
+    }
+}
