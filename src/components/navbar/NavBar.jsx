@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './navbar.css';
 import DropDown from './dropdown/DropDown';
 
 const NavBar = () => {
+    const [user, setUser] = useState(null);
+
+    // Use useEffect to fetch user data from localStorage when component mounts
+    useEffect(() => {
+        const storedUserData = localStorage.getItem('user');
+        if (storedUserData) {
+            const parsedUser = JSON.parse(storedUserData);
+            setUser(parsedUser); // Assuming parsedUser contains the user object with a username
+        }
+    }, []);
     return (
         <div className='site-header'>
             <div className='container'>
@@ -79,17 +89,29 @@ const NavBar = () => {
                             src='src/assets/icons/bell_icon.png'
                             alt='bell-icon'
                         />
-                        <span>
-                            {/* Updated for React Router v6 */}
-                            <NavLink
-                                to='/login'
-                                className={({ isActive }) =>
-                                    isActive ? 'active' : ''
-                                }
-                            >
-                                Login
-                            </NavLink>
-                        </span>
+                        <div className='logged'>
+                            {user ? (
+                                <NavLink
+                                    to='/profile'
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'active logged-user'
+                                            : 'logged-user'
+                                    }
+                                >
+                                    {user.username.charAt(0).toUpperCase()}
+                                </NavLink>
+                            ) : (
+                                <NavLink
+                                    to='/login'
+                                    className={({ isActive }) =>
+                                        isActive ? 'active' : ''
+                                    }
+                                >
+                                    Login
+                                </NavLink>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

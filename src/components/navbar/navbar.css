@@ -53,19 +53,31 @@
     align-items: center;
 }
 
-.site-header .login span {
-    padding: 14px 25px;
-    border: 0.5px solid #ded3d3;
-    border-radius: 14px;
+.site-header .logged-user {
+    margin-left: 10px;
+    font-weight: 600;
+    color: white !important;
+    padding: 0; /* Remove padding to ensure the text is centered */
+    border: none;
+    border-radius: 40%; /* Make it a perfect circle */
+    background-color: #3e8686;
+    display: flex; /* Centers the text inside */
+    align-items: center; /* Centers the text vertically */
+    justify-content: center; /* Centers the text horizontally */
+    width: 50px; /* Fixed width for a circle */
+    height: 50px; /* Fixed height for a circle */
+    text-align: center; /* Center the text inside the circle */
+    font-size: 16px; /* Adjust font size if needed */
+    line-height: 1; /* To vertically align text in the center */
 }
 
 /* Dropdown Styling */
 .nav-item {
-    position: relative;
+    position: relative; /* Ensure the dropdown menu is positioned relative to the nav item */
 }
 
 .dropdown {
-    position: relative;
+    position: relative; /* Ensure the dropdown menu is positioned relative to the parent */
 }
 
 .dropdown:hover .feature-dropdown {
@@ -75,5 +87,22 @@
 .feature-dropdown {
     position: absolute;
     display: none; /* Initially hidden */
-    top: 100%;
+    top: 100%; /* Position directly below the dropdown parent */
+    left: 0; /* Align with the left edge of the parent */
+    background-color: white; /* Background color of the dropdown */
+    border: 1px solid #ded3d3; /* Border color of the dropdown */
+    border-radius: 5px; /* Rounded corners for the dropdown */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for better visibility */
+    z-index: 1000; /* Ensure the dropdown is above other content */
+}
+
+.feature-dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.feature-dropdown a:hover {
+    background-color: #f0f0f0; /* Background color on hover */
 }

@@ -66,6 +66,8 @@ const LoginPage = () => {
                 localStorage.setItem('user', JSON.stringify(result.data.user));
                 message = 'Login successful!';
                 // Optionally navigate or perform other actions here
+                navigate('/profile');
+                window.location.reload();
             }
         } else {
             const result = await signUpUser({
