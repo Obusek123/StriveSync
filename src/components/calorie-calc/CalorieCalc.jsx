@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import calorieRecommendations from './calorie.json';
+import './calorie.css';
 
 const CalorieCalc = () => {
     const [weight, setWeight] = useState('');
@@ -49,99 +50,104 @@ const CalorieCalc = () => {
 
     return (
         <div className='calorie-calculator'>
-            <h1>Calorie Calculator</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Weight (kg):</label>
-                    <input
-                        type='number'
-                        value={weight}
-                        onChange={(e) => setWeight(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Height (cm):</label>
-                    <input
-                        type='number'
-                        value={height}
-                        onChange={(e) => setHeight(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Age (years):</label>
-                    <input
-                        type='number'
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Gender:</label>
-                    <select
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                    >
-                        <option value='male'>Male</option>
-                        <option value='female'>Female</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Activity Level:</label>
-                    <select
-                        value={activityLevel}
-                        onChange={(e) => setActivityLevel(e.target.value)}
-                    >
-                        <option value='sedentary'>Sedentary</option>
-                        <option value='lightlyActive'>Lightly Active</option>
-                        <option value='moderatelyActive'>
-                            Moderately Active
-                        </option>
-                        <option value='veryActive'>Very Active</option>
-                        <option value='superActive'>Super Active</option>
-                    </select>
-                </div>
-                <button type='submit'>Calculate</button>
-            </form>
-            {calories && (
-                <div>
-                    <h2>
-                        Your Daily Calorie Requirement: {calories} calories/day
-                    </h2>
-                    {recommendation && (
-                        <div>
-                            <h3>Recommendations</h3>
-                            <p>{recommendation.range}</p>
-                            <h4>Diet</h4>
-                            <ul>
-                                {recommendation.recommendations.diet.map(
-                                    (item, index) => (
-                                        <li key={index}>{item}</li>
-                                    )
-                                )}
-                            </ul>
-                            <h4>Exercise</h4>
-                            <ul>
-                                {recommendation.recommendations.exercise.map(
-                                    (item, index) => (
-                                        <li key={index}>{item}</li>
-                                    )
-                                )}
-                            </ul>
-                            <h4>Nutrition</h4>
-                            <ul>
-                                {recommendation.recommendations.nutrition.map(
-                                    (item, index) => (
-                                        <li key={index}>{item}</li>
-                                    )
-                                )}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            )}
+            <div className='container'>
+                <h1>Calorie Calculator</h1>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Weight (kg):</label>
+                        <input
+                            type='number'
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label>Height (cm):</label>
+                        <input
+                            type='number'
+                            value={height}
+                            onChange={(e) => setHeight(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label>Age (years):</label>
+                        <input
+                            type='number'
+                            value={age}
+                            onChange={(e) => setAge(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label>Gender:</label>
+                        <select
+                            value={gender}
+                            onChange={(e) => setGender(e.target.value)}
+                        >
+                            <option value='male'>Male</option>
+                            <option value='female'>Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Activity Level:</label>
+                        <select
+                            value={activityLevel}
+                            onChange={(e) => setActivityLevel(e.target.value)}
+                        >
+                            <option value='sedentary'>Sedentary</option>
+                            <option value='lightlyActive'>
+                                Lightly Active
+                            </option>
+                            <option value='moderatelyActive'>
+                                Moderately Active
+                            </option>
+                            <option value='veryActive'>Very Active</option>
+                            <option value='superActive'>Super Active</option>
+                        </select>
+                    </div>
+                    <button type='submit'>Calculate</button>
+                </form>
+                {calories && (
+                    <div>
+                        <h2>
+                            Your Daily Calorie Requirement: {calories}{' '}
+                            calories/day
+                        </h2>
+                        {recommendation && (
+                            <div>
+                                <h3>Recommendations</h3>
+                                <p>{recommendation.range}</p>
+                                <h4>Diet</h4>
+                                <ul>
+                                    {recommendation.recommendations.diet.map(
+                                        (item, index) => (
+                                            <li key={index}>{item}</li>
+                                        )
+                                    )}
+                                </ul>
+                                <h4>Exercise</h4>
+                                <ul>
+                                    {recommendation.recommendations.exercise.map(
+                                        (item, index) => (
+                                            <li key={index}>{item}</li>
+                                        )
+                                    )}
+                                </ul>
+                                <h4>Nutrition</h4>
+                                <ul>
+                                    {recommendation.recommendations.nutrition.map(
+                                        (item, index) => (
+                                            <li key={index}>{item}</li>
+                                        )
+                                    )}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

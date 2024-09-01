@@ -9,6 +9,8 @@ import About from './pages/About';
 import NavBar from './components/navbar/NavBar';
 import Login from './pages/Login';
 import FitnessCalc from './pages/FitnessCalc';
+// sampele
+import LoginPage from './components/loginPage/LoginPage';
 
 function App() {
     return (
@@ -25,6 +27,10 @@ function App() {
                     path='/fitness-calculator'
                     element={<FitnessCalc />}
                 ></Route>
+
+                {/* sample login */}
+
+                <Route path='/login-sample' element={<LoginPage />}></Route>
             </Routes>
         </>
     );

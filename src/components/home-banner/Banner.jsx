@@ -20,7 +20,7 @@ const Banner = () => {
                         ultimate fitness journey with precision and innovation.
                     </p>
                     <Link to='/login' className='button'>
-                        Click here
+                        Start now
                     </Link>
                 </div>
                 <div className='banner-right'>

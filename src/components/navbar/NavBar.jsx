@@ -17,38 +17,58 @@ const NavBar = () => {
                     <div className='nav'>
                         <ul>
                             <li className='nav-item'>
-                                {' '}
-                                {/* Added class for positioning */}
-                                <NavLink exact to='/' activeClassName='active'>
+                                {/* Updated for React Router v6 */}
+                                <NavLink
+                                    to='/'
+                                    className={({ isActive }) =>
+                                        isActive ? 'active' : ''
+                                    }
+                                >
                                     Home
                                 </NavLink>
                             </li>
                             <li className='nav-item dropdown'>
-                                {' '}
-                                {/* Added dropdown class for styling */}
+                                {/* Updated for React Router v6 */}
                                 <NavLink
                                     to='/features'
-                                    activeClassName='active'
+                                    className={({ isActive }) =>
+                                        isActive ? 'active' : ''
+                                    }
                                 >
                                     Features
                                 </NavLink>
                                 <DropDown /> {/* Dropdown component */}
                             </li>
                             <li className='nav-item'>
+                                {/* Updated for React Router v6 */}
                                 <NavLink
                                     to='/services'
-                                    activeClassName='active'
+                                    className={({ isActive }) =>
+                                        isActive ? 'active' : ''
+                                    }
                                 >
                                     Services
                                 </NavLink>
                             </li>
                             <li className='nav-item'>
-                                <NavLink to='/blogs' activeClassName='active'>
+                                {/* Updated for React Router v6 */}
+                                <NavLink
+                                    to='/blogs'
+                                    className={({ isActive }) =>
+                                        isActive ? 'active' : ''
+                                    }
+                                >
                                     Blogs
                                 </NavLink>
                             </li>
                             <li className='nav-item'>
-                                <NavLink to='/about' activeClassName='active'>
+                                {/* Updated for React Router v6 */}
+                                <NavLink
+                                    to='/about'
+                                    className={({ isActive }) =>
+                                        isActive ? 'active' : ''
+                                    }
+                                >
                                     About us
                                 </NavLink>
                             </li>
@@ -60,7 +80,13 @@ const NavBar = () => {
                             alt='bell-icon'
                         />
                         <span>
-                            <NavLink to='/login' activeClassName='active'>
+                            {/* Updated for React Router v6 */}
+                            <NavLink
+                                to='/login'
+                                className={({ isActive }) =>
+                                    isActive ? 'active' : ''
+                                }
+                            >
                                 Login
                             </NavLink>
                         </span>

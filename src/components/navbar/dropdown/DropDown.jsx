@@ -8,27 +8,47 @@ const DropDown = () => {
         <div className='feature-dropdown'>
             <ul>
                 <li>
-                    <NavLink to='/fitness-calculator' activeClassName='active'>
+                    {/* Updated for React Router v6 */}
+                    <NavLink
+                        to='/fitness-calculator'
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
                         Fitness Calculator
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/exercises' activeClassName='active'>
+                    {/* Updated for React Router v6 */}
+                    <NavLink
+                        to='/exercises'
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
                         Workout plan
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/nutritional-data' activeClassName='active'>
+                    {/* Updated for React Router v6 */}
+                    <NavLink
+                        to='/nutritional-data'
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
                         Nutrition plan
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/goals' activeClassName='active'>
+                    {/* Updated for React Router v6 */}
+                    <NavLink
+                        to='/goals'
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
                         Goal Tracking
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/your-dashboard' activeClassName='active'>
+                    {/* Updated for React Router v6 */}
+                    <NavLink
+                        to='/Personal-Dashboard'
+                        className={({ isActive }) => (isActive ? 'active' : '')}
+                    >
                         Personal Dashboard
                     </NavLink>
                 </li>
