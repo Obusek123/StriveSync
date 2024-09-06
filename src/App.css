@@ -1,0 +1,158 @@
+.blog .banner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.blog .banner-content span {
+    margin-top: 60px;
+    font-size: 20px;
+}
+
+.blog .banner-content p {
+    font-size: 96px;
+    color: white;
+}
+
+.blog .rectangle {
+    background-color: #e7e3e3;
+    height: 262px;
+}
+
+.blog .below-banner {
+    height: 261px;
+    background-color: white;
+    position: relative;
+    top: -51px;
+    display: flex;
+    align-items: center;
+}
+
+.blog .rectangle .row {
+    display: flex;
+    gap: 40px;
+}
+
+.blog .rectangle .trending-txt {
+    transform: rotate(-90deg);
+    font-size: 20px;
+    white-space: nowrap;
+    height: 20px;
+}
+
+.blog .rectangle .col {
+    display: flex;
+    align-items: center;
+}
+
+.blog .rectangle .col p {
+    font-size: 24px;
+}
+
+.blog .rectangle .col div {
+    margin-left: 30px;
+}
+
+.blog .rectangle .col div span {
+    position: relative;
+    top: 20px;
+    white-space: nowrap;
+}
+
+.blog .latest-span {
+    margin: 40px 0;
+    font-size: 20px;
+}
+
+.blog .blog-start .row {
+    display: flex;
+    gap: 20px;
+}
+
+.blog .blog-start .row p {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.blog .blog-start .row .col .row div {
+    display: flex;
+    gap: 110px;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.blog .blog-second .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.blog .blog-second .row .col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.blog .blog-second .row .col2 {
+    margin-top: 80px;
+}
+
+.blog .blog-second p {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.blog .blog-second span {
+    font-size: 20px;
+}
+
+.blog .blog-third {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog .blog-third .col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.blog .p-blog-third {
+    font-size: 24px;
+    margin: 50px 0;
+}
+
+.blog .blog-third span {
+    font-style: 20px;
+    font-weight: 600;
+}
+
+.blog .blog-fourth {
+    background-color: #d9d9d9;
+    height: 374px;
+}
+
+.blog .blog-fourth {
+    display: flex;
+    align-items: center;
+}
+
+.blog .blog-fourth .container {
+    display: flex;
+    gap: 30px;
+}
+
+.blog .blog-fourth .container .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.blog .p-blog-fourth {
+    font-size: 24px;
+    margin: 40px 0 40px 160px;
+}

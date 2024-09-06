@@ -26,13 +26,24 @@ const Banner = () => {
                 <div className='banner-right'>
                     <div className='info'>
                         <ul>
-                            <li>22.37 BMI</li>
-                            <li>2692.3 kcal/day</li>
-                            <li>1736 BMR</li>
+                            <li>
+                                22.37 <br /> BMI
+                            </li>
+                            <li>
+                                2692.3 <br /> kcal/day
+                            </li>
+                            <li>
+                                1736 <br /> BMR
+                            </li>
                         </ul>
                     </div>
-                    <span>Track your fitness now</span>
-                    <button>Click here</button>
+                    <span>
+                        Track your <br /> fitness now
+                    </span>
+                    <button>
+                        Click here
+                        <i className='ri-arrow-right-down-line'></i>
+                    </button>
                 </div>
             </div>
         </div>

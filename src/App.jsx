@@ -12,6 +12,7 @@ import FitnessCalc from './pages/FitnessCalc';
 // Login and profile
 import LoginPage from './components/loginPage/LoginPage';
 import ProfilePage from './components/loginPage/ProfilePage';
+import Overall from './components/update-profile/Overall';
 
 function App() {
     return (
@@ -31,7 +32,8 @@ function App() {
                 {/* login */}
                 <Route path='/login' element={<LoginPage />}></Route>
                 {/* Profile */}
-                <Route path='profile' element={<ProfilePage />}></Route>
+                <Route path='/profile' element={<ProfilePage />}></Route>
+                <Route path='/profile-edit' element={<Overall />}></Route>
             </Routes>
         </>
     );

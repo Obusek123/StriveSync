@@ -105,7 +105,9 @@ const NavBar = () => {
                                 <NavLink
                                     to='/login'
                                     className={({ isActive }) =>
-                                        isActive ? 'active' : ''
+                                        isActive
+                                            ? 'active no-logged'
+                                            : 'no-logged'
                                     }
                                 >
                                     Login

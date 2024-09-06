@@ -106,3 +106,9 @@
 .feature-dropdown a:hover {
     background-color: #f0f0f0; /* Background color on hover */
 }
+
+.site-header .no-logged {
+    border: 0.5px solid rgb(202, 189, 189);
+    padding: 14px 20px;
+    border-radius: 14px;
+}

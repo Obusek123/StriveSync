@@ -9,13 +9,17 @@
         "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
         "start": "concurrently \"npm run backend\" \"npm run dev\"",
-        "backend": "cd backend && nodemon index.js"
+        "backend": "cd backend && nodemon server.js"
     },
     "dependencies": {
         "@emotion/react": "^11.13.0",
         "@emotion/styled": "^11.13.0",
         "@mui/icons-material": "^5.16.7",
         "@mui/material": "^5.16.7",
+        "@syncfusion/ej2-base": "^26.2.10",
+        "@syncfusion/ej2-react-calendars": "^26.2.12",
+        "@syncfusion/ej2-react-charts": "^26.2.12",
+        "date-fns": "^3.6.0",
         "react": "^18.3.1",
         "react-chat-widget": "^3.1.4",
         "react-dom": "^18.3.1",
@@ -25,6 +29,7 @@
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.3.1",
+        "concurrently": "^8.2.2",
         "eslint": "^8.57.0",
         "eslint-plugin-react": "^7.34.3",
         "eslint-plugin-react-hooks": "^4.6.2",

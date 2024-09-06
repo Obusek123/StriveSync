@@ -2,58 +2,48 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config(); // To load environment variables
 
 const app = express();
 
-// Connect to MongoDB
-mongoose.connect(
-    process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/strivesync-user',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }
-);
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-    console.log('DB connected');
-});
+// MongoDB connection setup
+mongoose
+    .connect(
+        process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/strivesync-user',
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }
+    )
+    .then(() => console.log('DB connected'))
+    .catch((err) => console.error('DB connection error:', err));
 
-// Define schemas and models
-const bmiSchema = new mongoose.Schema({
-    height: Number,
-    weight: Number,
-    age: Number,
-});
-
+// Define User Schema
 const userSchema = new mongoose.Schema({
-    username: String,
+    username: { type: String, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    bmi: bmiSchema,
+    personalInfo: {
+        height: Number,
+        weight: Number,
+        age: Number,
+        gender: String,
+        bmi: String,
+    },
+    // Removed extra fields and schemas
 });
 
+// User model
 const User = mongoose.model('User', userSchema);
 
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Route to fetch all users (for debugging purposes)
-app.get('/strivesync-user', async (req, res) => {
-    try {
-        const users = await User.find({});
-        res.status(200).json(users);
-    } catch (error) {
-        console.error('Error fetching users:', error);
-        res.status(500).json({ error: 'Failed to fetch users' });
-    }
-});
-
-// Sign Up Endpoint
+// User Sign-Up Endpoint
 app.post('/api/signup', async (req, res) => {
     try {
-        const { username, email, password, bmi } = req.body;
+        const { username, email, password } = req.body;
 
         // Check if the email already exists
         const existingUser = await User.findOne({ email });
@@ -62,7 +52,7 @@ app.post('/api/signup', async (req, res) => {
         }
 
         // Create a new user
-        const user = new User({ username, email, password, bmi });
+        const user = new User({ username, email, password });
         const doc = await user.save();
         res.status(201).json({ user: doc });
     } catch (error) {
@@ -71,19 +61,18 @@ app.post('/api/signup', async (req, res) => {
     }
 });
 
-// Login Endpoint
+// User Login Endpoint
 app.post('/api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
 
         // Find user by email
         const user = await User.findOne({ email });
-
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Check password
+        // Compare the provided password with the stored password
         if (user.password !== password) {
             return res.status(401).json({ error: 'Incorrect password' });
         }
@@ -95,6 +84,53 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+// Update User Information
+app.patch('/api/user/:id', async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const { username, email, personalInfo } = req.body;
+
+        const updateFields = {};
+
+        // Update username and email if provided
+        if (username) updateFields.username = username;
+        if (email) updateFields.email = email;
+
+        // Update personalInfo fields if provided
+        if (personalInfo) {
+            const { height, weight, age, gender } = personalInfo;
+            const calculatedBMI =
+                height && weight
+                    ? (weight / (height / 100) ** 2).toFixed(2)
+                    : personalInfo.bmi;
+
+            updateFields.personalInfo = {
+                height,
+                weight,
+                age,
+                gender,
+                bmi: calculatedBMI,
+            };
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { $set: updateFields },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.error('Error updating user:', error);
+        res.status(500).json({ error: 'Failed to update user' });
+    }
+});
+
+// Start the server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
