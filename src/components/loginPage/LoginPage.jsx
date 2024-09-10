@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/images/login-img.png';
 import './login.css';
 
+const validateEmail = (email) => {
+    const domain = 'gmail.com'; // Replace with your desired domain
+    const emailRegex = new RegExp(`^[a-zA-Z0-9._%+-]+@${domain}$`);
+    return emailRegex.test(email);
+};
+
 const signUpUser = async (userData) => {
     try {
         const response = await fetch('http://localhost:8080/api/signup', {
@@ -11,7 +17,6 @@ const signUpUser = async (userData) => {
             body: JSON.stringify(userData),
         });
         const data = await response.json();
-        console.log('Response Data:', data); // Log response data
         return { success: response.ok, data };
     } catch (error) {
         console.error('Sign up error:', error);
@@ -27,11 +32,10 @@ const loginUser = async (email, password) => {
             body: JSON.stringify({ email, password }),
         });
         const data = await response.json();
-        console.log('Login Response Data:', data); // Log response data
         return { success: response.ok, data };
     } catch (error) {
         console.error('Login error:', error);
-        return { success: false, error: 'Login failed' };
+        return { success: false, error: "Email or Password doesn't exist" };
     }
 };
 
@@ -43,6 +47,7 @@ const LoginPage = () => {
     });
     const [change, setChange] = useState('Sign Up');
     const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState(''); // Track message type ('error' or 'success')
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
@@ -57,17 +62,26 @@ const LoginPage = () => {
         let success = false;
         let message = '';
 
+        // Validate email format before login or sign up
+        if (!validateEmail(formData.email)) {
+            setMessage(`Please enter a valid domain`);
+            setMessageType('error'); // Set message as error
+            return;
+        }
+
         if (change === 'Login') {
             const result = await loginUser(formData.email, formData.password);
             success = result.success;
-            message = result.error || 'Login failed';
+            message = result.error || "Email or Password doesn't exist";
 
             if (success) {
                 localStorage.setItem('user', JSON.stringify(result.data.user));
                 message = 'Login successful!';
-                // Optionally navigate or perform other actions here
+                setMessageType('success'); // Set message as success
                 navigate('/profile');
                 window.location.reload();
+            } else {
+                setMessageType('error'); // Set message as error
             }
         } else {
             const result = await signUpUser({
@@ -80,13 +94,14 @@ const LoginPage = () => {
 
             if (success) {
                 message = 'Sign-up successful! You can now log in.';
-                // Optionally clear form fields here if needed
+                setMessageType('success'); // Set message as success
+            } else {
+                setMessageType('error'); // Set message as error
             }
         }
 
         setMessage(message);
 
-        // Clear the form fields only if the operation was successful
         if (success) {
             setFormData({
                 username: '',
@@ -99,6 +114,7 @@ const LoginPage = () => {
     const handleSignUpChange = () => {
         setChange(change === 'Sign Up' ? 'Login' : 'Sign Up');
         setMessage(''); // Clear the message when toggling forms
+        setMessageType(''); // Reset message type
     };
 
     const togglePasswordVisibility = () => {
@@ -109,7 +125,15 @@ const LoginPage = () => {
         <div className='container login-page'>
             <div className='loginSign'>
                 <h2>{change}</h2>
-                {message && <p>{message}</p>}
+                {message && (
+                    <p
+                        style={{
+                            color: messageType === 'error' ? 'red' : 'green',
+                        }}
+                    >
+                        {message}
+                    </p>
+                )}
                 {change === 'Sign Up' ? (
                     <form onSubmit={handleSubmit}>
                         <div>

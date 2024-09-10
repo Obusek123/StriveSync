@@ -13,6 +13,7 @@ import FitnessCalc from './pages/FitnessCalc';
 import LoginPage from './components/loginPage/LoginPage';
 import ProfilePage from './components/loginPage/ProfilePage';
 import Overall from './components/update-profile/Overall';
+import Exercises from './components/exercises/Exercises';
 
 function App() {
     return (
@@ -25,10 +26,12 @@ function App() {
                 <Route path='/blogs' element={<Blog />}></Route>
                 <Route path='/about' element={<About />}></Route>
                 <Route path='/login' element={<Login />}></Route>
+                {/* Dropdown */}
                 <Route
                     path='/fitness-calculator'
                     element={<FitnessCalc />}
                 ></Route>
+                <Route path='/exercises' element={<Exercises />}></Route>
                 {/* login */}
                 <Route path='/login' element={<LoginPage />}></Route>
                 {/* Profile */}

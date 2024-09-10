@@ -1,15 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const PersonalInfo = ({ formData, handleInputChange }) => {
-    const {
-        username = '',
-        email = '',
-        age = '',
-        gender = '',
-        height = '',
-        weight = '',
-        bmi = '',
-    } = formData;
+const PersonalInfo = ({ setFormData, setIsFormValid }) => {
+    const [formData, setLocalFormData] = useState({
+        username: '',
+        email: '',
+        personalInfo: {
+            height: '',
+            weight: '',
+            age: '',
+            gender: '',
+            bmi: '',
+        },
+    });
+
+    // Load user data from local storage
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            setLocalFormData({
+                username: user.username || '',
+                email: user.email || '',
+                personalInfo: {
+                    height: user.personalInfo?.height || '',
+                    weight: user.personalInfo?.weight || '',
+                    age: user.personalInfo?.age || '',
+                    gender: user.personalInfo?.gender || '',
+                    bmi: user.personalInfo?.bmi || '',
+                },
+            });
+        }
+    }, []);
+
+    // Handle input change and update formData state
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        const path = name.split('.');
+        setLocalFormData((prevState) => {
+            if (path.length > 1) {
+                return {
+                    ...prevState,
+                    personalInfo: {
+                        ...prevState.personalInfo,
+                        [path[1]]: value,
+                    },
+                };
+            } else {
+                return {
+                    ...prevState,
+                    [name]: value,
+                };
+            }
+        });
+    };
 
     // Calculate BMI if height and weight are available
     const calculateBMI = (height, weight) => {
@@ -22,11 +65,32 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
 
     // Update BMI when height or weight changes
     useEffect(() => {
-        const newBmi = calculateBMI(height, weight);
-        handleInputChange({
-            target: { name: 'personalInfo.bmi', value: newBmi },
-        }); // Notify parent
-    }, [height, weight, handleInputChange]);
+        const newBmi = calculateBMI(
+            formData.personalInfo.height,
+            formData.personalInfo.weight
+        );
+        setLocalFormData((prevState) => ({
+            ...prevState,
+            personalInfo: {
+                ...prevState.personalInfo,
+                bmi: newBmi,
+            },
+        }));
+    }, [formData.personalInfo.height, formData.personalInfo.weight]);
+
+    // Pass form data up to Overall.jsx
+    useEffect(() => {
+        setFormData(formData);
+        // Check if form is valid to enable/disable submit button
+        const isFormValid =
+            formData.username &&
+            formData.email &&
+            formData.personalInfo.age &&
+            formData.personalInfo.height &&
+            formData.personalInfo.weight &&
+            formData.personalInfo.gender;
+        setIsFormValid(isFormValid);
+    }, [formData, setFormData, setIsFormValid]);
 
     return (
         <div className='personal-info'>
@@ -37,7 +101,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
                     type='text'
                     id='username'
                     name='username'
-                    value={username}
+                    value={formData.username}
                     onChange={handleInputChange}
                     required
                 />
@@ -48,7 +112,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
                     type='email'
                     id='email'
                     name='email'
-                    value={email}
+                    value={formData.email}
                     onChange={handleInputChange}
                     required
                 />
@@ -59,7 +123,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
                     type='number'
                     id='age'
                     name='personalInfo.age'
-                    value={age}
+                    value={formData.personalInfo.age}
                     onChange={handleInputChange}
                     required
                 />
@@ -69,7 +133,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
                 <select
                     id='gender'
                     name='personalInfo.gender'
-                    value={gender}
+                    value={formData.personalInfo.gender}
                     onChange={handleInputChange}
                     required
                 >
@@ -85,7 +149,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
                     type='number'
                     id='height'
                     name='personalInfo.height'
-                    value={height}
+                    value={formData.personalInfo.height}
                     onChange={handleInputChange}
                     required
                 />
@@ -96,7 +160,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
                     type='number'
                     id='weight'
                     name='personalInfo.weight'
-                    value={weight}
+                    value={formData.personalInfo.weight}
                     onChange={handleInputChange}
                     required
                 />
@@ -107,7 +171,7 @@ const PersonalInfo = ({ formData, handleInputChange }) => {
                     type='text'
                     id='bmi'
                     name='bmi'
-                    value={calculateBMI(height, weight)} // Display calculated BMI
+                    value={formData.personalInfo.bmi}
                     readOnly
                 />
             </div>

@@ -1,0 +1,110 @@
+.Exercises {
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    margin: 20px 0;
+    gap: 20px;
+    scroll-behavior: smooth;
+}
+
+.body-part {
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 150px;
+    text-align: center;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.body-part.active {
+    background-color: lightgray;
+}
+
+.body-part:hover {
+    background-color: #e0e0e0;
+}
+
+.exercises-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.exercise-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 220px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-image {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.exercise-details {
+    margin-top: 10px;
+}
+
+.exercise-details p {
+    margin: 5px 0;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-left: 50px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 10px 30px 10px 30px; /* Updated padding: top right bottom left */
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.button-right {
+    position: absolute;
+    right: -30px; /* Move the button a bit further out to the right */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 1;
+}

@@ -1,9 +1,11 @@
 import React from 'react';
 import './banner.css';
 import bannerImg from '../../assets/images/banner-img.png';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { BrowserRouter, Link, useNavigate } from 'react-router-dom';
 
 const Banner = () => {
+    const navigate = useNavigate();
+
     return (
         <div className='container'>
             <div className='banner'>
@@ -40,7 +42,11 @@ const Banner = () => {
                     <span>
                         Track your <br /> fitness now
                     </span>
-                    <button>
+                    <button
+                        onClick={() => {
+                            navigate('/fitness-calculator');
+                        }}
+                    >
                         Click here
                         <i className='ri-arrow-right-down-line'></i>
                     </button>
