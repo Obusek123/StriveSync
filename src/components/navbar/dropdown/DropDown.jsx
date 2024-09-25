@@ -25,8 +25,16 @@ const DropDown = () => {
                         Workout plan
                     </NavLink>
                 </li>
-                <li>
-                    {/* Updated for React Router v6 */}
+            </ul>
+        </div>
+    );
+};
+
+export default DropDown;
+
+{
+    /* <li>
+                    
                     <NavLink
                         to='/nutritional-data'
                         className={({ isActive }) => (isActive ? 'active' : '')}
@@ -35,7 +43,7 @@ const DropDown = () => {
                     </NavLink>
                 </li>
                 <li>
-                    {/* Updated for React Router v6 */}
+                    
                     <NavLink
                         to='/goals'
                         className={({ isActive }) => (isActive ? 'active' : '')}
@@ -44,17 +52,12 @@ const DropDown = () => {
                     </NavLink>
                 </li>
                 <li>
-                    {/* Updated for React Router v6 */}
+                  
                     <NavLink
                         to='/Personal-Dashboard'
                         className={({ isActive }) => (isActive ? 'active' : '')}
                     >
                         Personal Dashboard
                     </NavLink>
-                </li>
-            </ul>
-        </div>
-    );
-};
-
-export default DropDown;
+                </li> */
+}

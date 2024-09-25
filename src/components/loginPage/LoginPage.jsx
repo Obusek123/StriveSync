@@ -20,7 +20,7 @@ const signUpUser = async (userData) => {
         return { success: response.ok, data };
     } catch (error) {
         console.error('Sign up error:', error);
-        return { success: false, error: 'Sign up failed' };
+        return { success: false, error: '*Sign up failed' };
     }
 };
 
@@ -35,7 +35,7 @@ const loginUser = async (email, password) => {
         return { success: response.ok, data };
     } catch (error) {
         console.error('Login error:', error);
-        return { success: false, error: "Email or Password doesn't exist" };
+        return { success: false, error: "*Email or Password doesn't exist" };
     }
 };
 
@@ -56,6 +56,11 @@ const LoginPage = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    // Password validation function to check length between 8 and 26 characters
+    const validatePassword = (password) => {
+        return password.length >= 8 && password.length <= 26;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -64,164 +69,116 @@ const LoginPage = () => {
 
         // Validate email format before login or sign up
         if (!validateEmail(formData.email)) {
-            setMessage(`Please enter a valid domain`);
-            setMessageType('error'); // Set message as error
+            setMessage('*Please enter a valid domain');
+            setMessageType('error');
+            return;
+        }
+
+        // Validate password length
+        if (!validatePassword(formData.password)) {
+            setMessage('*Password must be between 8 and 26 characters.');
+            setMessageType('error');
             return;
         }
 
         if (change === 'Login') {
             const result = await loginUser(formData.email, formData.password);
             success = result.success;
-            message = result.error || "Email or Password doesn't exist";
+            message = result.error || "*Email or Password doesn't exist";
 
             if (success) {
                 localStorage.setItem('user', JSON.stringify(result.data.user));
-                message = 'Login successful!';
-                setMessageType('success'); // Set message as success
-                navigate('/profile');
-                window.location.reload();
-            } else {
-                setMessageType('error'); // Set message as error
+                localStorage.setItem('loginDate', new Date().toISOString()); // Store login date
+                message = 'Login successful';
+                navigate('/profile'); // Redirect to profile after successful login
             }
         } else {
-            const result = await signUpUser({
-                username: formData.username,
-                email: formData.email,
-                password: formData.password,
-            });
+            const result = await signUpUser(formData);
             success = result.success;
-            message = result.error || 'Sign-up failed';
+            message = result.data.message || 'Sign up successful';
 
             if (success) {
-                message = 'Sign-up successful! You can now log in.';
-                setMessageType('success'); // Set message as success
-            } else {
-                setMessageType('error'); // Set message as error
+                localStorage.setItem('user', JSON.stringify(result.data.user));
+                setFormData({
+                    username: '',
+                    email: '',
+                    password: '',
+                });
             }
         }
 
         setMessage(message);
-
-        if (success) {
-            setFormData({
-                username: '',
-                email: '',
-                password: '',
-            });
-        }
+        setMessageType(success ? 'success' : 'error');
     };
 
-    const handleSignUpChange = () => {
-        setChange(change === 'Sign Up' ? 'Login' : 'Sign Up');
-        setMessage(''); // Clear the message when toggling forms
-        setMessageType(''); // Reset message type
-    };
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
+    const handlePasswordVisibility = () => {
+        setShowPassword((prevState) => !prevState);
     };
 
     return (
-        <div className='container login-page'>
-            <div className='loginSign'>
-                <h2>{change}</h2>
-                {message && (
-                    <p
-                        style={{
-                            color: messageType === 'error' ? 'red' : 'green',
-                        }}
-                    >
-                        {message}
+        <div className='login-page'>
+            <div className='login-container container'>
+                <form onSubmit={handleSubmit} className='login-form'>
+                    {message && (
+                        <div className={`message ${messageType}`}>
+                            {message}
+                        </div>
+                    )}
+                    {change === 'Sign Up' && (
+                        <input
+                            type='text'
+                            name='username'
+                            placeholder='Username'
+                            value={formData.username}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    )}
+                    <input
+                        type='email'
+                        name='email'
+                        placeholder='Email'
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <div className='password-field'>
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            name='password'
+                            placeholder='Password'
+                            value={formData.password}
+                            onChange={handleInputChange}
+                            required
+                            autoComplete='new-password'
+                        />
+                        <i
+                            className={`fa ${
+                                showPassword ? 'fa-eye-slash' : 'fa-eye'
+                            } password-icon`}
+                            onClick={handlePasswordVisibility}
+                        ></i>
+                    </div>
+                    <button type='submit' className='submit-button'>
+                        {change}
+                    </button>
+                    <p className='toggle-form'>
+                        {change === 'Login'
+                            ? "Don't have an account? "
+                            : 'Already have an account? '}
+                        <span
+                            onClick={() => {
+                                setChange(
+                                    change === 'Login' ? 'Sign Up' : 'Login'
+                                );
+                            }}
+                        >
+                            {change === 'Login' ? 'Sign Up' : 'Login'}
+                        </span>
                     </p>
-                )}
-                {change === 'Sign Up' ? (
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor='username'>Username</label>
-                            <input
-                                type='text'
-                                name='username'
-                                placeholder='Username'
-                                value={formData.username}
-                                onChange={handleInputChange}
-                                required
-                                autoComplete='username'
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor='email'>Email</label>
-                            <input
-                                type='email'
-                                name='email'
-                                placeholder='Email'
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                required
-                                autoComplete='email'
-                            />
-                        </div>
-                        <div className='password-container'>
-                            <label htmlFor='password'>Password</label>
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name='password'
-                                placeholder='Password'
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                required
-                                autoComplete='new-password'
-                            />
-                            <i
-                                className={`fa ${
-                                    showPassword ? 'fa-eye-slash' : 'fa-eye'
-                                } password-icon`}
-                                onClick={togglePasswordVisibility}
-                            ></i>
-                        </div>
-                        <button type='submit'>Sign Up</button>
-                    </form>
-                ) : (
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor='email'>Email</label>
-                            <input
-                                type='email'
-                                name='email'
-                                placeholder='Email'
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                required
-                                autoComplete='email'
-                            />
-                        </div>
-                        <div className='password-container'>
-                            <label htmlFor='password'>Password</label>
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name='password'
-                                placeholder='Password'
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                required
-                                autoComplete='current-password'
-                            />
-                            <i
-                                className={`fa ${
-                                    showPassword ? 'fa-eye-slash' : 'fa-eye'
-                                } password-icon`}
-                                onClick={togglePasswordVisibility}
-                            ></i>
-                        </div>
-                        <button type='submit'>Login</button>
-                    </form>
-                )}
-                <p onClick={handleSignUpChange}>
-                    {change === 'Sign Up'
-                        ? 'Already have an account? Login'
-                        : "Don't have an account? Sign Up"}
-                </p>
+                </form>
+                <img src={loginImg} alt='Login' className='login-image' />
             </div>
-            <img src={loginImg} alt='' />
         </div>
     );
 };

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import PersonalInfo from './PersonalInfo';
+import './edit.css';
+import { useNavigate } from 'react-router-dom';
 
 const Overall = () => {
     const [formData, setFormData] = useState({});
     const [isFormValid, setIsFormValid] = useState(false);
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     // Submit form data to server
     const handleSubmit = async (e) => {
@@ -34,6 +37,7 @@ const Overall = () => {
             setMessage('Error updating data');
             console.error('Update Error:', error);
         }
+        navigate('/profile');
     };
 
     const handleCancel = () => {
@@ -41,10 +45,11 @@ const Overall = () => {
         if (storedUser) {
             setFormData(JSON.parse(storedUser));
         }
+        navigate('/profile');
     };
 
     return (
-        <div className='overall-edit'>
+        <div className='overall-edit container'>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
                 <PersonalInfo

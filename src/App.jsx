@@ -43,3 +43,5 @@ function App() {
 }
 
 export default App;
+
+// needed- Workout plan, recommendation plan, workout output, progress graph implementaion

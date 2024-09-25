@@ -1,103 +1,128 @@
-/* Overall container */
+/* edit.css */
+
+/* Overall component styles */
 .overall-edit {
+    padding: 20px;
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Form header */
-.overall-edit h3 {
-    margin-top: 0;
+.overall-edit h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
     color: #333;
 }
 
-/* Form elements */
-.form-group {
-    margin-bottom: 20px;
+.overall-edit form {
+    display: flex;
+    flex-direction: column;
 }
 
-.form-group label {
+.overall-edit .button-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.overall-edit .submit,
+.overall-edit .btn-cancel {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+.overall-edit .submit:hover {
+    background-color: #0056b3;
+}
+
+.overall-edit .btn-cancel {
+    background-color: #6c757d;
+}
+
+.overall-edit .btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+.overall-edit button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* PersonalInfo component styles scoped under overall-edit */
+.overall-edit .personal-info {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff; /* White background for personal info form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.overall-edit .personal-info h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.overall-edit .personal-info .form-group {
+    margin-bottom: 15px;
+}
+
+.overall-edit .personal-info .form-group label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
     color: #555;
 }
 
-.form-group input[type='text'],
-.form-group select {
+.overall-edit .personal-info .form-group input,
+.overall-edit .personal-info .form-group select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
 }
 
-/* Styling for select elements */
-.form-group select {
-    background-color: #fff;
+.overall-edit .personal-info .form-group input[type='text']:focus,
+.overall-edit .personal-info .form-group input[type='email']:focus,
+.overall-edit .personal-info .form-group input[type='number']:focus,
+.overall-edit .personal-info .form-group select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Button group */
-.button-group {
-    display: flex;
-    justify-content: space-between;
+.overall-edit .personal-info .form-group input[readonly],
+.overall-edit .personal-info .form-group select[readonly] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
 }
 
-.button-group button {
+.overall-edit .personal-info .form-group button {
+    display: inline-block;
     padding: 10px 20px;
+    margin-top: 10px;
     border: none;
     border-radius: 4px;
+    color: #fff;
+    background-color: #0056b3;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.button-group .submit {
-    background-color: #4caf50;
-    color: white;
+.overall-edit .personal-info .form-group button:hover {
+    background-color: #004494;
 }
 
-.button-group .submit:hover {
-    background-color: #45a049;
-}
-
-.button-group .btn-cancel {
-    background-color: #f44336;
-    color: white;
-}
-
-.button-group .btn-cancel:hover {
-    background-color: #e53935;
-}
-
-/* Specific component styling */
-.personal-info,
-.fitness-goal,
-.dietary-preferences,
-.health-info,
-.exercise-preferences,
-.fitness-level {
-    margin-bottom: 30px;
-}
-
-/* Additional styling for different components if needed */
-.dietary-preferences .form-group,
-.health-info .form-group,
-.exercise-preferences .form-group,
-.fitness-level .form-group {
-    margin-bottom: 15px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .button-group {
-        flex-direction: column;
-    }
-
-    .button-group button {
-        margin-bottom: 10px;
-    }
+.overall-edit .personal-info .form-group button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

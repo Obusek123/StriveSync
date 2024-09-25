@@ -1,0 +1,187 @@
+/* task.css */
+.task {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+
+    font-family: 'Arial', sans-serif;
+}
+
+.task h2,
+.task h3 {
+    text-align: center;
+    color: #333;
+    font-weight: 700;
+}
+
+.task h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.task h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.task ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-gap: 20px; /* Space between columns */
+}
+
+.task li {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.task li:hover {
+    transform: scale(1.02);
+}
+
+.task .items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.task .img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.task img {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.task .items strong {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.task span {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.task .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.task button {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task button:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.task button:active {
+    transform: scale(0.98);
+}
+
+.task button[style*='lightgreen'] {
+    background-color: lightgreen;
+    color: #fff;
+}
+
+.task button[style*='yellow'] {
+    background-color: #f7e98e;
+    color: #555;
+}
+
+.task button[style*='#d98f8f'] {
+    background-color: #d98f8f;
+    color: #fff;
+}
+
+.task .icon-container {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    cursor: pointer;
+}
+
+.task .icon-container i {
+    font-size: 1.5rem;
+    color: #ffcc00;
+}
+
+.task .popup {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.icon-container:hover .popup {
+    display: block;
+}
+
+/* Ensure .items container has relative positioning to place the icon correctly */
+.task .items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Responsive styling */
+@media (max-width: 1024px) {
+    .task ul {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .task {
+        width: 90%;
+    }
+
+    .task ul {
+        grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+
+    .task .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .task button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}

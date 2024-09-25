@@ -1,4 +1,38 @@
-.blog .banner-content {
+.home .after-banner {
+    margin: 75px auto 0;
+    border-radius: 30px;
+    width: 1030px;
+    height: 180px;
+    background: linear-gradient(to right, #6ac1c1, #226e6e, #6ac1c1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.home .goals {
+    padding-top: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    font-size: 22px;
+    gap: 80px;
+    text-align: center;
+}
+
+.home .quote {
+    padding: 10px;
+    border-radius: 20px;
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #d9ece6;
+}
+
+.quote .blog .banner-content {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -14,12 +48,12 @@
     color: white;
 }
 
-.blog .rectangle {
+.rectangle {
     background-color: #e7e3e3;
     height: 262px;
 }
 
-.blog .below-banner {
+.below-banner {
     height: 261px;
     background-color: white;
     position: relative;
@@ -28,32 +62,32 @@
     align-items: center;
 }
 
-.blog .rectangle .row {
+.rectangle .row {
     display: flex;
     gap: 40px;
 }
 
-.blog .rectangle .trending-txt {
+.rectangle .trending-txt {
     transform: rotate(-90deg);
     font-size: 20px;
     white-space: nowrap;
     height: 20px;
 }
 
-.blog .rectangle .col {
+.rectangle .col {
     display: flex;
     align-items: center;
 }
 
-.blog .rectangle .col p {
+.rectangle .col p {
     font-size: 24px;
 }
 
-.blog .rectangle .col div {
+.rectangle .col div {
     margin-left: 30px;
 }
 
-.blog .rectangle .col div span {
+.rectangle .col div span {
     position: relative;
     top: 20px;
     white-space: nowrap;
@@ -155,4 +189,86 @@
 .blog .p-blog-fourth {
     font-size: 24px;
     margin: 40px 0 40px 160px;
+}
+
+.about-us {
+    margin-top: 50px;
+}
+
+.about-us .start {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: bold;
+}
+
+.about-us .start span {
+    font-size: 32px;
+}
+
+.about-us .start .b {
+    color: #9a6262;
+}
+
+.about-us .start .join-us {
+    padding: 5px 0 0 15px;
+    background-color: #57a0a0;
+    color: white;
+    font-weight: 700;
+    width: 143px;
+    border-radius: 55px;
+}
+
+.about-us .about-para {
+    background-color: #57a0a0;
+    border-radius: 246px 246px 0 0;
+    height: 600px;
+    margin-top: 50px;
+    color: white;
+}
+
+.about-us .about-para h2 {
+    padding-top: 50px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.about-us .about-para p {
+    margin-top: 20px;
+}
+
+.about-us .mission h2 {
+    text-align: center;
+    margin-top: 50px;
+    font-style: 36px;
+    color: #57a0a0;
+    font-weight: bold;
+}
+
+.about-us .mission .contents {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+}
+
+.about-us .mission .contents .section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #f5e1e1;
+    height: 250px;
+    width: 250px;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-us .mission .contents .section span {
+    color: #57a0a0;
+    font-weight: 700;
+}
+
+.about-us .mission .contents .section p {
+    width: 150px;
 }

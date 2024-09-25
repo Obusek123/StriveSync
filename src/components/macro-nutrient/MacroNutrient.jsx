@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import macroNutrients from './MacroNutrient.json'; // Adjust the path as needed
+import './macro.css';
 
 const MacroNutrient = () => {
     const [protein, setProtein] = useState(0);
@@ -59,7 +60,7 @@ const MacroNutrient = () => {
     };
 
     return (
-        <div>
+        <div className='macro-nutrient'>
             <h1>Macro Nutrient Calculator</h1>
             <div>
                 <label>Protein (g):</label>

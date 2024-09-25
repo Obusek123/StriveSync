@@ -11,6 +11,11 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
             gender: '',
             bmi: '',
         },
+        fitnessGoals: {
+            primaryGoals: [],
+            targetWeight: '',
+            targetTimeframe: '',
+        },
     });
 
     // Load user data from local storage
@@ -28,6 +33,11 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
                     gender: user.personalInfo?.gender || '',
                     bmi: user.personalInfo?.bmi || '',
                 },
+                fitnessGoals: {
+                    primaryGoals: user.fitnessGoals?.primaryGoals || [],
+                    targetWeight: user.fitnessGoals?.targetWeight || '',
+                    targetTimeframe: user.fitnessGoals?.targetTimeframe || '',
+                },
             });
         }
     }, []);
@@ -37,11 +47,11 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
         const { name, value } = e.target;
         const path = name.split('.');
         setLocalFormData((prevState) => {
-            if (path.length > 1) {
+            if (path[0] === 'personalInfo' || path[0] === 'fitnessGoals') {
                 return {
                     ...prevState,
-                    personalInfo: {
-                        ...prevState.personalInfo,
+                    [path[0]]: {
+                        ...prevState[path[0]],
                         [path[1]]: value,
                     },
                 };
@@ -51,6 +61,25 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
                     [name]: value,
                 };
             }
+        });
+    };
+
+    // Handle checkbox change for fitness goals
+    const handleCheckboxChange = (e) => {
+        const { value, checked } = e.target;
+        setLocalFormData((prevState) => {
+            const updatedGoals = checked
+                ? [...prevState.fitnessGoals.primaryGoals, value]
+                : prevState.fitnessGoals.primaryGoals.filter(
+                      (goal) => goal !== value
+                  );
+            return {
+                ...prevState,
+                fitnessGoals: {
+                    ...prevState.fitnessGoals,
+                    primaryGoals: updatedGoals,
+                },
+            };
         });
     };
 
@@ -173,6 +202,82 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
                     name='bmi'
                     value={formData.personalInfo.bmi}
                     readOnly
+                />
+            </div>
+
+            {/* Fitness Goals Section */}
+            <h2>Fitness Goals</h2>
+            <div className='form-group'>
+                <label>Primary Goals:</label>
+                <div>
+                    <label>
+                        <input
+                            type='checkbox'
+                            value='Weight loss 🏃🏻‍♀️'
+                            checked={formData.fitnessGoals.primaryGoals.includes(
+                                'Weight loss 🏃🏻‍♀️'
+                            )}
+                            onChange={handleCheckboxChange}
+                        />
+                        Weight Loss 🏃🏻‍♀️
+                    </label>
+                    <label>
+                        <input
+                            type='checkbox'
+                            value='Muscle gain 💪'
+                            checked={formData.fitnessGoals.primaryGoals.includes(
+                                'Muscle gain 💪'
+                            )}
+                            onChange={handleCheckboxChange}
+                        />
+                        Muscle Gain 💪
+                    </label>
+                    <label>
+                        <input
+                            type='checkbox'
+                            value='General fitness 🏃'
+                            checked={formData.fitnessGoals.primaryGoals.includes(
+                                'General fitness 🏃'
+                            )}
+                            onChange={handleCheckboxChange}
+                        />
+                        General Fitness 🏃
+                    </label>
+                    <label>
+                        <input
+                            type='checkbox'
+                            value='Endurance improvement ❚█══█❚'
+                            checked={formData.fitnessGoals.primaryGoals.includes(
+                                'Endurance improvement ❚█══█❚'
+                            )}
+                            onChange={handleCheckboxChange}
+                        />
+                        Endurance Improvement ❚█══█❚
+                    </label>
+                </div>
+            </div>
+            <div className='form-group'>
+                <label htmlFor='targetWeight'>Target Weight (kg):</label>
+                <input
+                    type='number'
+                    id='targetWeight'
+                    name='fitnessGoals.targetWeight'
+                    value={formData.fitnessGoals.targetWeight}
+                    onChange={handleInputChange}
+                    placeholder='e.g. 70'
+                />
+            </div>
+            <div className='form-group'>
+                <label htmlFor='targetTimeframe'>
+                    Target Timeframe (months):
+                </label>
+                <input
+                    type='number'
+                    id='targetTimeframe'
+                    name='fitnessGoals.targetTimeframe'
+                    value={formData.fitnessGoals.targetTimeframe}
+                    onChange={handleInputChange}
+                    placeholder='e.g. 3'
                 />
             </div>
         </div>

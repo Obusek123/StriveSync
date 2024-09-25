@@ -1,176 +1,302 @@
-/* General container styling for login page */
+/* General styling for the login page */
 .login-page {
+    padding: 20px;
+}
+
+.login-container {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    min-height: 100vh;
 }
 
-.login-page .loginSign {
+.login-image {
     flex: 1;
-    max-width: 500px;
-    margin-right: 20px;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
 }
 
-.login-page .loginSign h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.login-page .loginSign p {
-    font-size: 1rem;
-    color: #d9534f; /* Red color for error messages */
-    margin-bottom: 20px;
-}
-
-.login-page .loginSign form {
+/* Login form styling */
+.login-form {
     display: flex;
     flex-direction: column;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    width: 500px;
 }
 
-.login-page .loginSign form div {
-    margin-bottom: 15px;
-}
-
-.login-page .loginSign form label {
-    font-size: 0.875rem;
-    color: #555;
-}
-
-.login-page .loginSign form input {
+.login-form input {
     width: 100%;
     padding: 10px;
-    font-size: 1rem;
+    margin-bottom: 20px;
+    font-size: 16px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
-.login-page .loginSign form input:focus {
+.login-form input:focus {
     border-color: #007bff;
     outline: none;
 }
 
-.login-page .loginSign form button {
-    padding: 10px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.login-page .loginSign form button:hover {
-    background-color: #0056b3;
-}
-
-.login-page .loginSign p {
-    text-align: center;
-    margin-top: 10px;
-    color: #007bff; /* Blue color for the toggle message */
-    cursor: pointer;
-}
-
-.login-page img {
-    max-width: 500px;
-    height: auto;
-    display: block;
-}
-
-.login-page .password-field {
+.password-field {
     position: relative;
 }
 
-.login-page .password-field input {
-    width: calc(100% - 80px); /* Adjust width to accommodate the button */
-    padding-right: 70px; /* Space for the button */
+.password-field input {
+    width: 100%;
+    padding-right: 40px; /* Space for the icon */
 }
 
-.login-page .show-password-btn {
+.password-icon {
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 35%;
     transform: translateY(-50%);
-    background: none;
+    cursor: pointer;
+    color: #007bff;
+    opacity: 0.8;
+}
+
+.password-icon:hover {
+    opacity: 1;
+}
+
+.show-password-toggle {
+    display: none; /* Hide the checkbox if you're using the icon */
+}
+
+.submit-button {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.toggle-form {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.toggle-form span {
     color: #007bff;
     cursor: pointer;
 }
 
-.login-page .password-container {
-    position: relative;
+/* Profile page */
+
+.profile-page {
+    background-color: #fcf8f8;
+    border-radius: 20px;
+    margin-top: 20px;
 }
 
-.login-page .password-icon {
-    position: absolute;
-    right: 10px;
-    top: 60%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    opacity: 60%;
-}
-
-.login-page img {
-    max-width: 100%;
-    height: 600px;
-    width: auto;
-    border-radius: 10px;
-}
-
-/* Profile Page */
-
-.profile-page .profile-section {
-    background-color: #479696;
-    height: 200px;
-}
-
-.profile-page .profile-show {
-    max-width: 1100px;
-    margin: 0 auto;
+.profile-page .left {
+    width: 300px;
     display: flex;
-    justify-content: space-between;
-    padding: 50px 0;
-    color: white;
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
+    background-color: #f1f1f1;
+    border-radius: 20px 0 0 20px;
+    padding-top: 20px;
 }
 
-.profile-page .circle {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid white;
-    font-size: 2rem;
-    color: white;
-    text-transform: uppercase;
-    margin-right: 30px;
-    font-weight: bold;
+.profile-page .profile-show .username {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-.profile-page .username {
+.profile-page .profile-show .user-top i {
+    color: rgb(21, 98, 52);
+    margin-right: 10px;
     font-size: 1.5rem;
 }
 
-.profile-page .edit-profile {
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 1px solid white;
-    cursor: pointer;
+/* Profile Image with Hover Effect */
+.profile-page .profile-show .p-show {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+    border: 2px solid white;
+    font-size: 3rem;
+    color: white;
+    background-color: #519d9d;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
 }
 
-.profile-page .button-logout {
+.profile-page .profile-show .p-show input[type='file'] {
+    display: none;
+}
+
+.profile-page .profile-show .p-show:hover::after {
+    content: 'Upload Image';
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center;
+    bottom: 10px;
+    left: 50%;
+    bottom: 20%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 999;
+    border: 1px solid black;
+}
+
+.profile-page .alpha {
+    position: relative;
+}
+
+.profile-page .left .remove-image-btn {
+    display: none;
+    border: 0.5px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* Show remove image button when hovering */
+.profile-page .alpha:hover .remove-image-btn {
+    display: block;
+}
+
+/* Hover Effect for Upload Image */
+.profile-page .profile-show .p-show:hover {
+    background-color: #5fbaba;
+}
+
+/* User Info (Age, Height, Weight) */
+.profile-page .profile-show .left .info {
+    display: flex;
+    gap: 10px;
+}
+
+.profile-page .profile-show .left .info .item {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-page .profile-show .left .info .item div {
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.profile-page .profile-show .left .info .item span {
+    font-size: 16px;
+}
+
+.profile-page .profile-show .left .info .item span,
+.profile-page .profile-show .left .info .item p {
+    opacity: 65%;
+}
+
+.profile-page .left .your-goals {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-page .left .your-goals .tgoal {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.profile-page .left .goal {
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.profile-page .profile-show .edit-profile {
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #77f9d2;
+    transition: all 0.15s;
+    margin-bottom: 20px;
+}
+
+.profile-page .profile-show .edit-profile:hover {
+    background-color: #519d9d;
+    color: white;
+}
+
+.profile-page .profile-show {
+    display: flex;
+}
+
+.profile-page .profile-show .right {
+    padding: 20px;
+    width: 540px;
+}
+
+.profile-page .right .data-show {
+    display: flex;
+    gap: 30px;
+}
+
+.button-logout {
+    margin-top: 10px;
     height: 50px;
     padding-top: 15px;
 }
 
-.profile-page .button-logout:hover {
-    background-color: #f0f0f0;
+.button-logout:hover {
+    background-color: #f7f3f2;
 }
 
-.ri-logout-box-r-line {
+.button-logout i {
     margin-right: 10px;
     color: red;
+}
+
+.welcome {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
