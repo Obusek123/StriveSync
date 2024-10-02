@@ -4,6 +4,8 @@ import SparkLine from '../../syncfusion/SparkLine';
 import Weather from '../overview/Weather';
 import YourBMI from '../overview/YourBMI';
 import DaysSinceLogin from '../overview/DaysSinceLogin';
+import PassedTask from './PassedTask';
+import FoodSearch from './FoodSearch';
 
 const Overview = () => {
     return (
@@ -13,7 +15,15 @@ const Overview = () => {
                 <DaysSinceLogin />
             </div>
             <div className='weather'>
-                <Weather />
+                <div className='wea'>
+                    <Weather />
+                </div>
+                <div className='tasks'>
+                    <PassedTask />
+                </div>
+                <div className='search'>
+                    <FoodSearch />
+                </div>
             </div>
             <div className='your-bmi'>
                 <YourBMI />

@@ -1,12 +1,8 @@
 /* task.css */
 .task {
-    width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 10px;
-
-    font-family: 'Arial', sans-serif;
 }
 
 .task h2,
@@ -26,7 +22,7 @@
     margin-bottom: 20px;
 }
 
-.task ul {
+.task .exercise-list ul {
     list-style: none;
     padding: 0;
     display: grid;
@@ -34,7 +30,7 @@
     grid-gap: 20px; /* Space between columns */
 }
 
-.task li {
+.task .exercise-list li {
     background-color: #fff;
     padding: 15px;
     border-radius: 10px;
@@ -120,43 +116,57 @@
     color: #fff;
 }
 
-.task .icon-container {
-    position: absolute;
-    top: -10px;
-    right: 0;
-    cursor: pointer;
-}
-
-.task .icon-container i {
-    font-size: 1.5rem;
-    color: #ffcc00;
-}
-
-.task .popup {
-    display: none;
-    position: absolute;
-    top: 30px;
-    right: 10px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
-
-.icon-container:hover .popup {
-    display: block;
-}
-
-/* Ensure .items container has relative positioning to place the icon correctly */
 .task .items {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+}
+
+.task .add-task input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 0.5px solid rgb(203, 192, 192);
+}
+
+.task i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.3rem;
+    color: orangered;
+}
+
+.task .popup {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: -10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.task .icon-container:hover .popup {
+    display: block;
+}
+
+.task .popup strong {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.task .popup ul {
+    margin: 0;
+}
+
+.task .popup li {
+    border: none;
 }
 
 /* Responsive styling */
@@ -184,4 +194,52 @@
         width: 100%;
         margin-bottom: 5px;
     }
+}
+
+.task .todo-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task .task-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.task .todo-list h3 {
+    padding: 10px 30px;
+    border-bottom: 1px solid black;
+}
+
+.task .todo-list ul {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.task .todo-list .content {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.task .todo-list ul button {
+    color: white;
+    background: rgb(231, 152, 152);
+    padding: 5px;
+    margin: 10px 0 0 0 !important;
+}
+
+.task .todo-list .save {
+    margin-top: 30px;
+    color: white;
+    background: rgb(107, 193, 107);
+}
+
+.todo-task {
+    padding-bottom: 15px;
+    border-bottom: 0.5px solid rgb(219, 209, 209);
 }

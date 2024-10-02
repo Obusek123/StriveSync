@@ -3,9 +3,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const nodemailer = require('nodemailer'); // Import Nodemailer
-require('dotenv').config();
+const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
 
+dotenv.config();
 const app = express();
 
 // MongoDB connection setup
@@ -27,19 +28,32 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     profileImage: { type: String },
     personalInfo: {
-        height: Number,
-        weight: Number,
-        age: Number,
-        gender: String,
-        bmi: String,
-        bmiHistory: { type: Map, of: Number },
+        height: { type: Number },
+        weight: { type: Number },
+        age: { type: Number },
+        gender: { type: String },
+        bmi: { type: Number }, // Changed to Number to represent BMI correctly
+        calorieIntake: { type: Number },
+        activityLevel: { type: String },
     },
     fitnessGoals: {
-        primaryGoals: [String],
-        targetWeight: Number,
-        targetTimeframe: String,
+        primaryGoals: [{ type: String }],
+        targetWeight: { type: Number },
+        targetTimeframe: { type: String },
     },
     signupDate: { type: Date, default: Date.now },
+    // Optional: Using a schema for calories, but keeping it simple if you want
+    dateCaloriesMap: {
+        type: Map, // Using a Map for better clarity if you want a key-value structure
+        of: Number, // The value for each date key will be the calories burned (Number)
+        default: {},
+    },
+    bmiHistory: [
+        {
+            date: { type: Date, default: Date.now },
+            bmi: { type: Number, required: true },
+        },
+    ],
 });
 
 // User model
@@ -49,14 +63,20 @@ const User = mongoose.model('User', userSchema);
 app.use(cors());
 app.use(bodyParser.json());
 
+// Error handling middleware
+const errorHandler = (err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+};
+
 // User Sign-Up Endpoint
 app.post('/api/signup', async (req, res) => {
+    const { username, email, password } = req.body;
     try {
-        const { username, email, password } = req.body;
         const existingUser = await User.findOne({ email });
-        if (existingUser) {
+        if (existingUser)
             return res.status(400).json({ error: 'Email already exists' });
-        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ username, email, password: hashedPassword });
         const doc = await user.save();
@@ -69,16 +89,15 @@ app.post('/api/signup', async (req, res) => {
 
 // User Login Endpoint
 app.post('/api/login', async (req, res) => {
+    const { email, password } = req.body;
     try {
-        const { email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
+        if (!user) return res.status(404).json({ error: 'User not found' });
+
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
+        if (!isMatch)
             return res.status(401).json({ error: 'Incorrect password' });
-        }
+
         res.status(200).json({ message: 'Login successful', user });
     } catch (error) {
         console.error('Error logging in:', error);
@@ -88,50 +107,49 @@ app.post('/api/login', async (req, res) => {
 
 // Update User Information (PATCH)
 app.patch('/api/user/:id', async (req, res) => {
+    const userId = req.params.id;
+    const { username, email, personalInfo, fitnessGoals, dateCaloriesMap } =
+        req.body;
+
+    const updateFields = {};
+    let bmiHistoryUpdate = null; // Variable to store the new BMI entry
+
+    if (username) updateFields.username = username;
+    if (email) updateFields.email = email;
+
+    if (personalInfo) {
+        const { height, weight, age, gender, calorieIntake, activityLevel } =
+            personalInfo;
+
+        const calculatedBMI =
+            height && weight
+                ? (weight / (height / 100) ** 2).toFixed(2)
+                : personalInfo.bmi;
+
+        updateFields.personalInfo = {
+            height,
+            weight,
+            age,
+            gender,
+            bmi: calculatedBMI,
+            calorieIntake,
+            activityLevel,
+        };
+
+        // If both height and weight are provided, we can add to bmiHistory
+        if (calculatedBMI) {
+            bmiHistoryUpdate = { bmi: calculatedBMI, date: new Date() };
+        }
+    }
+
+    if (fitnessGoals) updateFields.fitnessGoals = fitnessGoals;
+
+    if (dateCaloriesMap) {
+        updateFields.dateCaloriesMap = dateCaloriesMap; // Update dateCaloriesMap
+    }
+
     try {
-        const userId = req.params.id;
-        const { username, email, personalInfo, fitnessGoals } = req.body;
-
-        const updateFields = {};
-
-        if (username) updateFields.username = username;
-        if (email) updateFields.email = email;
-
-        if (personalInfo) {
-            const { height, weight, age, gender } = personalInfo;
-            const calculatedBMI =
-                height && weight
-                    ? (weight / (height / 100) ** 2).toFixed(2)
-                    : personalInfo.bmi;
-
-            const user = await User.findById(userId);
-            if (!user) {
-                return res.status(404).json({ error: 'User not found' });
-            }
-
-            // Ensure both dates are valid
-            const today = new Date();
-            const signupDate = new Date(user.signupDate);
-            const timeDiff = today.getTime() - signupDate.getTime(); // Time difference in ms
-            const dayCount = Math.floor(timeDiff / (1000 * 3600 * 24)) + 1; // Calculate the number of days
-
-            let bmiHistory = user.personalInfo.bmiHistory || {}; // Ensure bmiHistory is an object
-            bmiHistory[`day${dayCount}`] = calculatedBMI; // Update the history
-
-            updateFields.personalInfo = {
-                height,
-                weight,
-                age,
-                gender,
-                bmi: calculatedBMI,
-                bmiHistory: bmiHistory,
-            };
-        }
-
-        if (fitnessGoals) {
-            updateFields.fitnessGoals = fitnessGoals;
-        }
-
+        // First update the user information
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             { $set: updateFields },
@@ -140,6 +158,12 @@ app.patch('/api/user/:id', async (req, res) => {
 
         if (!updatedUser) {
             return res.status(404).json({ error: 'User not found' });
+        }
+
+        // If there is a new BMI to record, push it into the bmiHistory array
+        if (bmiHistoryUpdate) {
+            updatedUser.bmiHistory.push(bmiHistoryUpdate);
+            await updatedUser.save(); // Save the updated user document
         }
 
         res.status(200).json(updatedUser);
@@ -151,17 +175,18 @@ app.patch('/api/user/:id', async (req, res) => {
 
 // New Endpoint for Uploading Profile Image
 app.patch('/api/user/:id/uploadImage', async (req, res) => {
+    const userId = req.params.id;
+    const { profileImage } = req.body;
+
     try {
-        const userId = req.params.id;
-        const { profileImage } = req.body;
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             { $set: { profileImage } },
             { new: true, runValidators: true }
         );
-        if (!updatedUser) {
+        if (!updatedUser)
             return res.status(404).json({ error: 'User not found' });
-        }
+
         res.status(200).json(updatedUser);
     } catch (error) {
         console.error('Error updating profile image:', error);
@@ -169,57 +194,8 @@ app.patch('/api/user/:id/uploadImage', async (req, res) => {
     }
 });
 
-// Fetch BMI History (GET)
-app.get('/api/user/:id/bmi-history', async (req, res) => {
-    try {
-        const userId = req.params.id;
-        const user = await User.findById(userId);
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
-        const bmiHistory = user.personalInfo.bmiHistory || {};
-        const historyArray = Object.entries(bmiHistory).map(([key, value]) => ({
-            date: key,
-            bmi: value,
-        }));
-
-        res.status(200).json(historyArray);
-    } catch (error) {
-        console.error('Error fetching BMI history:', error);
-        res.status(500).json({ error: 'Failed to fetch BMI history' });
-    }
-});
-
-// New Endpoint for Sending Messages
-app.post('/api/send-message', async (req, res) => {
-    const { message, userEmail } = req.body; // Expecting message and userEmail in the request body
-
-    // Create a transporter for sending emails
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_USER, // Your email
-            pass: process.env.EMAIL_PASS, // Your email password or app password
-        },
-    });
-
-    const mailOptions = {
-        from: userEmail, // Sender's email
-        to: process.env.TRAINER_EMAIL, // Trainer's email
-        subject: 'New Consultation Message',
-        text: message,
-    };
-
-    try {
-        await transporter.sendMail(mailOptions);
-        res.status(200).json({ message: 'Message sent successfully!' });
-    } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).json({ error: 'Failed to send message' });
-    }
-});
+// Use the error handling middleware
+app.use(errorHandler);
 
 // Start the server
 const PORT = process.env.PORT || 8080;

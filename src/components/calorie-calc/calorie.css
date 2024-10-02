@@ -1,103 +1,84 @@
-.calorie-calculator {
-    max-width: 600px;
+.ccal {
+    margin-top: 50px;
+}
+
+.ccal .container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.ccal .cal-head {
     margin: 0 auto;
-    padding: 40px;
-    border-radius: 15px;
+    font-size: 48px;
+}
+
+.ccal .cal-head::before {
+    content: '';
+    display: block;
+    width: 400px;
+    height: 10px;
     background-color: #bef3fa;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    top: 0;
+    border-radius: 10px;
+    margin-bottom: 26px;
 }
 
-.calorie-calculator h1 {
-    font-size: 36px;
+.ccal .quote {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+    opacity: 60%;
 }
 
-.calorie-calculator form {
+.ccal .row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ccal .row .cal-calc {
+    border-radius: 20px;
+    background-color: #bef3fa;
+    padding: 40px;
+}
+
+.cal-calc form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.calorie-calculator label {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 5px;
+.cal-calc form .row div {
+    display: flex;
+    flex-direction: column;
 }
 
-.calorie-calculator input[type='number'],
-.calorie-calculator select {
-    width: 100%;
-    padding: 15px;
+.cal-calc .row {
+    gap: 40px;
+}
+
+.cal-calc input,
+.cal-calc select {
+    width: 220px;
+    height: 60px;
     border-radius: 10px;
     border: none;
-    font-size: 16px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     outline: none;
+    padding-left: 20px;
+    font-size: 16px;
+    box-shadow: 0 10px 20px 0px rgba(177, 169, 169, 0.5);
+    margin-top: 10px;
 }
 
-.calorie-calculator button {
-    width: 100%;
-    padding: 15px;
+.cal-calc button {
+    margin-top: 35px;
+    height: 50px;
+    width: 200px;
     border-radius: 10px;
     border: none;
-    background-color: #5b5bdd;
     color: white;
-    font-size: 18px;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.calorie-calculator button:hover {
-    background-color: #4949bb;
-}
-
-.calorie-result {
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #e8f7ff;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.calorie-result h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.calorie-result p {
-    font-size: 20px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.recommendation {
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #e0ffe0;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.recommendation h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.recommendation ul {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-
-.recommendation ul li {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
+    background-color: #5b5bdd;
+    font-size: 16px;
 }

@@ -5,6 +5,8 @@ import workoutplan from '../assets/images/workout-planning.png';
 import consultation from '../assets/images/consultation.png';
 import below1 from '../../src/assets/images/banner-below-1.jpg';
 import below2 from '../../src/assets/images/banner-below-2.jpg';
+import photoOne from '../../src/assets/images/photo-one.png';
+import photoTwo from '../../src/assets/images/photo-two.png';
 
 const Home = () => {
     return (
@@ -38,7 +40,7 @@ const Home = () => {
                     </div>
                     <div className='programs'>
                         <h3>
-                            Our <span>featured programs</span>
+                            Our <br /> <span>featured programs</span>
                         </h3>
                         <div className='images'>
                             <img src={workoutplan} alt='' />
@@ -46,7 +48,9 @@ const Home = () => {
                             <img src={deitplan} alt='' />
                         </div>
                     </div>
-                    <div className='about-us'>
+                </div>
+                <div className='about-us'>
+                    <div className='container'>
                         <h3>About Us</h3>
                         <p>
                             StriveSync started with a vision to simplify fitness
@@ -87,38 +91,85 @@ const Home = () => {
                             engaging for everyone.
                         </p>
                     </div>
-                    <div className='rectangle'>
-                        <div className='container'>
-                            <div className='below-banner'>
-                                <div className='row'>
-                                    <div className='col'>
-                                        <span className='trending-txt'>
-                                            Trending Stories
+                </div>
+
+                <div className='rectangle'>
+                    <div className='container'>
+                        <div className='below-banner'>
+                            <div className='row'>
+                                <div className='col'>
+                                    <span className='trending-txt'>
+                                        Trending Stories
+                                    </span>
+                                    <img src={below1} alt='' />
+                                    <div>
+                                        <p>
+                                            The Ultimate <br /> At Home <br />{' '}
+                                            Full Body Worlout
+                                        </p>
+                                        <span>
+                                            Nov 2019 - By Krishnna Devkota
                                         </span>
-                                        <img src={below1} alt='' />
-                                        <div>
-                                            <p>
-                                                The Ultimate <br /> At Home{' '}
-                                                <br /> Full Body Worlout
-                                            </p>
-                                            <span>
-                                                Nov 2019 - By Krishnna Devkota
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className='col'>
-                                        <img src={below2} alt='' />
-                                        <div>
-                                            <p>
-                                                The Best Keto <br /> Diet
-                                                Recepie <br /> For Beginner
-                                            </p>
-                                            <span>
-                                                Nov 2019 - By Krishnna Devkota
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
+                                <div className='col'>
+                                    <img src={below2} alt='' />
+                                    <div>
+                                        <p>
+                                            The Best Keto <br /> Diet Recepie{' '}
+                                            <br /> For Beginner
+                                        </p>
+                                        <span>
+                                            Nov 2019 - By Krishnna Devkota
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='box'>
+                    <div className='container'>
+                        <div className='row'>
+                            <div className='col'>
+                                <p className='p-first'>
+                                    Achieve Your <br /> Fitness
+                                    <span style={{ color: 'green' }}>
+                                        Goals
+                                    </span>
+                                </p>
+                                <p className='p-second'>
+                                    Access a wide range of workout programs and
+                                    routines designed to help you reach your
+                                    specific fitness goals, whether its weight
+                                    loss, muscle gain, improved endurance, or
+                                    qverall wellness.{' '}
+                                </p>
+                            </div>
+                            <div className='col'>
+                                <img src={photoOne} alt='' />
+                            </div>
+                        </div>
+                        <div className='row'>
+                            <div className='col'>
+                                <img src={photoTwo} alt='' />
+                            </div>
+                            <div className='col'>
+                                <p className='p-first'>
+                                    Expert Guidance <br /> and
+                                    <span style={{ color: 'green' }}>
+                                        {' '}
+                                        Support
+                                    </span>
+                                </p>
+                                <p className='p-second'>
+                                    Receive expert guidance and support from
+                                    certified fitness trainers and nutritionists
+                                    who will provide personalized
+                                    recommendations, answer your questions, and
+                                    help you stay motivated on your fitness
+                                    journey.
+                                </p>
                             </div>
                         </div>
                     </div>

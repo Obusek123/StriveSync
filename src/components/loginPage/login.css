@@ -200,6 +200,10 @@
     display: block;
 }
 
+.profile-page .profile-show {
+    height: 1000px;
+}
+
 /* Hover Effect for Upload Image */
 .profile-page .profile-show .p-show:hover {
     background-color: #5fbaba;
@@ -272,7 +276,7 @@
 
 .profile-page .profile-show .right {
     padding: 20px;
-    width: 540px;
+    width: 940px;
 }
 
 .profile-page .right .data-show {

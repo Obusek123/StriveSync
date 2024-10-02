@@ -40,7 +40,7 @@ const NavBar = () => {
                             <li className='nav-item dropdown'>
                                 {/* Updated for React Router v6 */}
                                 <NavLink
-                                    to='/features'
+                                    to='/fitness-calculator'
                                     className={({ isActive }) =>
                                         isActive ? 'active' : ''
                                     }

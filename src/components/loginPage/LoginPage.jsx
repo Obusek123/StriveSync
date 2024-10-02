@@ -128,7 +128,7 @@ const LoginPage = () => {
                         <input
                             type='text'
                             name='username'
-                            placeholder='Username'
+                            placeholder='Fullname'
                             value={formData.username}
                             onChange={handleInputChange}
                             required

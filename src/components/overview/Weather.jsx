@@ -177,7 +177,7 @@ const Weather = () => {
                             padding: '5px',
                             position: 'absolute',
                             top: '10px',
-                            right: '5px',
+                            right: '10px',
                         }}
                     >
                         Change City

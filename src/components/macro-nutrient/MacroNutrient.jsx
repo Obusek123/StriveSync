@@ -61,62 +61,92 @@ const MacroNutrient = () => {
 
     return (
         <div className='macro-nutrient'>
-            <h1>Macro Nutrient Calculator</h1>
-            <div>
-                <label>Protein (g):</label>
-                <input
-                    type='number'
-                    value={protein}
-                    onChange={handleProteinChange}
-                />
-            </div>
-            <div>
-                <label>Carbs (g):</label>
-                <input
-                    type='number'
-                    value={carbs}
-                    onChange={handleCarbsChange}
-                />
-            </div>
-            <div>
-                <label>Fat (g):</label>
-                <input type='number' value={fat} onChange={handleFatChange} />
-            </div>
-            <div>
-                <label>Total Calories:</label>
-                <span>{calculateCalories()}</span>
-            </div>
-            <div>
-                <button onClick={getRecommendation}>Get Recommendation</button>
-            </div>
-            {showRecommendation && (
-                <div>
-                    <h2>Recommendations:</h2>
-                    <div>
-                        <h3>Diet:</h3>
-                        <ul>
-                            {recommendation.diet &&
-                                recommendation.diet.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                        </ul>
-                        <h3>Exercise:</h3>
-                        <ul>
-                            {recommendation.exercise &&
-                                recommendation.exercise.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                        </ul>
-                        <h3>Nutrition:</h3>
-                        <ul>
-                            {recommendation.nutrition &&
-                                recommendation.nutrition.map((item, index) => (
-                                    <li key={index}>{item}</li>
-                                ))}
-                        </ul>
+            <div className='container'>
+                <h1>
+                    Macro Nutrient <br /> Calculator
+                </h1>
+                <span className='quote'>
+                    Calulate your nutrition diet and get <br /> recommendation
+                </span>
+                <div className='row '>
+                    <div className='col calculation'>
+                        <div className='row'>
+                            <div>
+                                <label>Protein (g):</label>
+                                <input
+                                    type='number'
+                                    value={protein}
+                                    onChange={handleProteinChange}
+                                />
+                            </div>
+                            <div>
+                                <label>Carbs (g):</label>
+                                <input
+                                    type='number'
+                                    value={carbs}
+                                    onChange={handleCarbsChange}
+                                />
+                            </div>
+                        </div>
+                        <div className='row'>
+                            <div>
+                                <label>Fat (g):</label>
+                                <input
+                                    type='number'
+                                    value={fat}
+                                    onChange={handleFatChange}
+                                />
+                            </div>
+
+                            <div>
+                                <button onClick={getRecommendation}>
+                                    Get Recommendation
+                                </button>
+                            </div>
+                        </div>
+                        <div className='result'>
+                            <label>Total Calories:</label>
+                            <span>{calculateCalories()}</span>
+                        </div>
+                    </div>
+                    <div className='col'>
+                        {showRecommendation && (
+                            <div>
+                                <h2>Recommendations:</h2>
+                                <div>
+                                    <h3>Diet:</h3>
+                                    <ul>
+                                        {recommendation.diet &&
+                                            recommendation.diet.map(
+                                                (item, index) => (
+                                                    <li key={index}>{item}</li>
+                                                )
+                                            )}
+                                    </ul>
+                                    <h3>Exercise:</h3>
+                                    <ul>
+                                        {recommendation.exercise &&
+                                            recommendation.exercise.map(
+                                                (item, index) => (
+                                                    <li key={index}>{item}</li>
+                                                )
+                                            )}
+                                    </ul>
+                                    <h3>Nutrition:</h3>
+                                    <ul>
+                                        {recommendation.nutrition &&
+                                            recommendation.nutrition.map(
+                                                (item, index) => (
+                                                    <li key={index}>{item}</li>
+                                                )
+                                            )}
+                                    </ul>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 };

@@ -10,6 +10,8 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
             age: '',
             gender: '',
             bmi: '',
+            activityLevel: '', // Add activity level here
+            calorieIntake: '', // Move calorie intake inside personalInfo
         },
         fitnessGoals: {
             primaryGoals: [],
@@ -32,6 +34,8 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
                     age: user.personalInfo?.age || '',
                     gender: user.personalInfo?.gender || '',
                     bmi: user.personalInfo?.bmi || '',
+                    activityLevel: user.personalInfo?.activityLevel || '', // Populate with stored data
+                    calorieIntake: user.personalInfo?.calorieIntake || '',
                 },
                 fitnessGoals: {
                     primaryGoals: user.fitnessGoals?.primaryGoals || [],
@@ -121,6 +125,59 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
         setIsFormValid(isFormValid);
     }, [formData, setFormData, setIsFormValid]);
 
+    const calculateCalorieIntake = (
+        gender,
+        height,
+        weight,
+        age,
+        activityLevel
+    ) => {
+        let BMR;
+        if (gender === 'male') {
+            BMR = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+        } else {
+            BMR = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+        }
+        const activityMultiplier = {
+            Sedentary: 1.2,
+            'Lightly active': 1.375,
+            'Moderately active': 1.55,
+            'Very active': 1.725,
+            'Extra active': 1.9,
+        };
+        return (BMR * (activityMultiplier[activityLevel] || 1)).toFixed(2);
+    };
+
+    // Update calorie intake when activity level, weight, height, or age changes
+    useEffect(() => {
+        if (
+            formData.personalInfo.height &&
+            formData.personalInfo.weight &&
+            formData.personalInfo.age &&
+            formData.personalInfo.activityLevel
+        ) {
+            const calorieIntake = calculateCalorieIntake(
+                formData.personalInfo.gender,
+                formData.personalInfo.height,
+                formData.personalInfo.weight,
+                formData.personalInfo.age,
+                formData.personalInfo.activityLevel
+            );
+            setLocalFormData((prevState) => ({
+                ...prevState,
+                personalInfo: {
+                    ...prevState.personalInfo,
+                    calorieIntake,
+                },
+            }));
+        }
+    }, [
+        formData.personalInfo.height,
+        formData.personalInfo.weight,
+        formData.personalInfo.age,
+        formData.personalInfo.activityLevel,
+    ]);
+
     return (
         <div className='personal-info'>
             <h2>Personal Information</h2>
@@ -201,6 +258,45 @@ const PersonalInfo = ({ setFormData, setIsFormValid }) => {
                     id='bmi'
                     name='bmi'
                     value={formData.personalInfo.bmi}
+                    readOnly
+                />
+            </div>
+            <div className='form-group'>
+                <label htmlFor='activityLevel'>Activity Level:</label>
+                <select
+                    id='activityLevel'
+                    name='personalInfo.activityLevel'
+                    value={formData.personalInfo.activityLevel}
+                    onChange={handleInputChange}
+                    required
+                >
+                    <option value=''>Select Activity Level</option>
+                    <option value='Sedentary'>
+                        Sedentary (little or no exercise)
+                    </option>
+                    <option value='Lightly active'>
+                        Lightly active (light exercise 1-3 days/week)
+                    </option>
+                    <option value='Moderately active'>
+                        Moderately active (moderate exercise 3-5 days/week)
+                    </option>
+                    <option value='Very active'>
+                        Very active (hard exercise 6-7 days a week)
+                    </option>
+                    <option value='Extra active'>
+                        Extra active (very hard exercise or physical job)
+                    </option>
+                </select>
+            </div>
+            <div className='form-group'>
+                <label htmlFor='calorieIntake'>
+                    Calorie Intake Requirement (per day):
+                </label>
+                <input
+                    type='text'
+                    id='calorieIntake'
+                    name='personalInfo.calorieIntake'
+                    value={formData.personalInfo.calorieIntake}
                     readOnly
                 />
             </div>

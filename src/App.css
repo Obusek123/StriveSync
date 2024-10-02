@@ -32,10 +32,85 @@
     background-color: #d9ece6;
 }
 
+.home .programs {
+    margin-top: 50px;
+}
+
+.home .programs {
+    font-size: 20px;
+}
+
+.home .programs span {
+    color: #368585;
+}
+
+.home .programs .images {
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.home .programs .images img {
+    height: 250px;
+    width: 250px;
+    border-radius: 20px;
+}
+
 .quote .blog .banner-content {
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.home .about-us {
+    background-color: #368585;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+.home .about-us h3 {
+    margin-top: 46px;
+    font-size: 36px;
+    text-align: center;
+}
+
+.home .about-us p {
+    margin-top: 50px;
+    text-align: justify;
+}
+
+.home .box .row {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home .box .row .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home .box .row .p-first {
+    font-weight: bold;
+    font-size: 34px;
+}
+
+.home .box .row .p-second {
+    font-size: 20px;
+}
+
+.home .box .row p {
+    width: 500px;
+    margin-top: 30px;
+}
+
+.home .box .row img {
+    border-radius: 30px;
+    width: 600px;
+    height: 500px;
 }
 
 .blog .banner-content span {
